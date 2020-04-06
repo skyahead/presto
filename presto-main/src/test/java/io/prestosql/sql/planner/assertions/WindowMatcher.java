@@ -16,7 +16,7 @@ package io.prestosql.sql.planner.assertions;
 import io.prestosql.Session;
 import io.prestosql.cost.StatsProvider;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.block.SortOrder;
 import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.WindowNode;

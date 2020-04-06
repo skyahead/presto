@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.rule.test.BaseRuleTest;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ValuesNode;
 import org.testng.annotations.Test;
 

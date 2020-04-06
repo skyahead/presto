@@ -17,11 +17,11 @@ import io.prestosql.metadata.BoundVariables;
 import io.prestosql.metadata.FunctionArgumentDefinition;
 import io.prestosql.metadata.FunctionMetadata;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlFunction;
 
 import static com.google.common.base.Strings.nullToEmpty;
-import static io.prestosql.metadata.FunctionKind.WINDOW;
+import static io.prestosql.spi.metadata.FunctionKind.WINDOW;
 import static java.util.Collections.nCopies;
 import static java.util.Objects.requireNonNull;
 

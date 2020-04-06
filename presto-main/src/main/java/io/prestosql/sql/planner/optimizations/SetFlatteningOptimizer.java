@@ -22,7 +22,7 @@ import io.prestosql.sql.planner.PlanNodeIdAllocator;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ExceptNode;
 import io.prestosql.sql.planner.plan.IntersectNode;
 import io.prestosql.spi.plan.PlanNode;

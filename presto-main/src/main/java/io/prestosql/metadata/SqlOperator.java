@@ -14,13 +14,16 @@
 package io.prestosql.metadata;
 
 import io.prestosql.spi.function.OperatorType;
+import io.prestosql.spi.metadata.LongVariableConstraint;
+import io.prestosql.spi.metadata.Signature;
+import io.prestosql.spi.metadata.TypeVariableConstraint;
 import io.prestosql.spi.type.TypeSignature;
 
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static io.prestosql.metadata.FunctionKind.SCALAR;
-import static io.prestosql.metadata.Signature.mangleOperatorName;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.Signature.mangleOperatorName;
 import static io.prestosql.spi.function.OperatorType.EQUAL;
 import static io.prestosql.spi.function.OperatorType.INDETERMINATE;
 import static io.prestosql.spi.function.OperatorType.IS_DISTINCT_FROM;

@@ -16,7 +16,7 @@ package io.prestosql.operator;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.metadata.FunctionArgumentDefinition;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.type.TypeSignature;
 
 import java.util.List;

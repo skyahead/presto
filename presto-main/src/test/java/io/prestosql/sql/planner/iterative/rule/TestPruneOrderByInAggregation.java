@@ -19,7 +19,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.rule.test.BaseRuleTest;
 import io.prestosql.sql.planner.iterative.rule.test.PlanBuilder;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.tree.SortItem;
 import org.testng.annotations.Test;
 
@@ -33,7 +33,7 @@ import static io.prestosql.sql.planner.assertions.PlanMatchPattern.functionCall;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.singleGroupingSet;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.sort;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.values;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
 
 public class TestPruneOrderByInAggregation
         extends BaseRuleTest

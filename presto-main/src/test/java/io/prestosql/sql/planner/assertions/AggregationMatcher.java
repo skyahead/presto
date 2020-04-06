@@ -17,8 +17,8 @@ import io.prestosql.Session;
 import io.prestosql.cost.StatsProvider;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.Symbol;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AggregationNode.Step;
+import io.prestosql.spi.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode.Step;
 import io.prestosql.spi.plan.PlanNode;
 
 import java.util.Collection;

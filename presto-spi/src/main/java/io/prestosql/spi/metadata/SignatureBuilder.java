@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.prestosql.metadata;
+package io.prestosql.spi.metadata;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.spi.function.OperatorType;
@@ -19,8 +19,8 @@ import io.prestosql.spi.type.TypeSignature;
 
 import java.util.List;
 
-import static io.prestosql.metadata.FunctionKind.SCALAR;
-import static io.prestosql.metadata.Signature.mangleOperatorName;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.Signature.mangleOperatorName;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.requireNonNull;

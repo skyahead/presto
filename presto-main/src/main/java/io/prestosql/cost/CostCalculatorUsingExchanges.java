@@ -17,6 +17,7 @@ package io.prestosql.cost;
 import com.google.common.collect.ImmutableList;
 import io.prestosql.Session;
 import io.prestosql.spi.Symbol;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.GroupReference;
 import io.prestosql.sql.planner.plan.*;
@@ -41,8 +42,8 @@ import static io.prestosql.cost.CostCalculatorWithEstimatedExchanges.calculateRe
 import static io.prestosql.cost.CostCalculatorWithEstimatedExchanges.calculateRemoteRepartitionCost;
 import static io.prestosql.cost.CostCalculatorWithEstimatedExchanges.calculateRemoteReplicateCost;
 import static io.prestosql.cost.LocalCostEstimate.addPartialComponents;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.FINAL;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.Step.FINAL;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
 import static java.lang.Math.max;
 import static java.util.Objects.requireNonNull;
 

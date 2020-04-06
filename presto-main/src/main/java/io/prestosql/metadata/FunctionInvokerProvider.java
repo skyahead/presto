@@ -22,6 +22,7 @@ import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.function.InvocationConvention;
 import io.prestosql.spi.function.InvocationConvention.InvocationArgumentConvention;
 import io.prestosql.spi.function.InvocationConvention.InvocationReturnConvention;
+import io.prestosql.spi.metadata.ResolvedFunction;
 
 import java.util.List;
 import java.util.Optional;

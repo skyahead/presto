@@ -16,7 +16,7 @@ package io.prestosql.operator.aggregation;
 import com.google.common.primitives.Ints;
 import io.prestosql.block.BlockAssertions;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.operator.PagesIndex;
 import io.prestosql.operator.window.PagesWindowIndex;
 import io.prestosql.spi.Page;

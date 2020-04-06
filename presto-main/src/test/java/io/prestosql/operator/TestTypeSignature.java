@@ -28,7 +28,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.google.common.collect.Lists.transform;
-import static io.prestosql.operator.TypeSignatureParser.parseTypeSignature;
+import static io.prestosql.spi.metadata.TypeSignatureParser.parseTypeSignature;
 import static io.prestosql.spi.type.BigintType.BIGINT;
 import static io.prestosql.spi.type.DecimalType.createDecimalType;
 import static io.prestosql.spi.type.TypeSignature.arrayType;

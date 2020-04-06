@@ -15,7 +15,7 @@ package io.prestosql.operator.annotations;
 
 import io.prestosql.metadata.BoundVariables;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.function.InvocationConvention;
 import io.prestosql.spi.type.TypeSignature;
 

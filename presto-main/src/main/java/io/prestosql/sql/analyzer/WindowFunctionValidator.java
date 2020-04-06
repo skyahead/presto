@@ -14,11 +14,11 @@
 package io.prestosql.sql.analyzer;
 
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.sql.tree.DefaultExpressionTraversalVisitor;
 import io.prestosql.sql.tree.FunctionCall;
 
-import static io.prestosql.metadata.FunctionKind.WINDOW;
+import static io.prestosql.spi.metadata.FunctionKind.WINDOW;
 import static io.prestosql.spi.StandardErrorCode.MISSING_OVER;
 import static io.prestosql.sql.analyzer.SemanticExceptions.semanticException;
 import static java.util.Objects.requireNonNull;

@@ -19,7 +19,7 @@ import com.google.common.collect.PeekingIterator;
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.OperatorNotFoundException;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.Symbol;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.predicate.DiscreteValues;

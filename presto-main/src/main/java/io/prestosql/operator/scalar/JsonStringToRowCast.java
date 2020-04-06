@@ -18,12 +18,12 @@ import io.prestosql.metadata.BoundVariables;
 import io.prestosql.metadata.FunctionArgumentDefinition;
 import io.prestosql.metadata.FunctionMetadata;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlScalarFunction;
 import io.prestosql.spi.type.TypeSignature;
 
-import static io.prestosql.metadata.FunctionKind.SCALAR;
-import static io.prestosql.metadata.Signature.withVariadicBound;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.Signature.withVariadicBound;
 import static io.prestosql.operator.scalar.JsonToRowCast.JSON_TO_ROW;
 import static io.prestosql.spi.type.VarcharType.VARCHAR;
 

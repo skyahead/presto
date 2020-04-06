@@ -16,7 +16,7 @@ package io.prestosql.type;
 import com.google.common.collect.ImmutableList;
 import io.airlift.slice.Slice;
 import io.prestosql.annotation.UsedByGeneratedCode;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlScalarFunction;
 import io.prestosql.spi.type.Type;
 import io.prestosql.spi.type.TypeSignature;
@@ -24,7 +24,7 @@ import io.prestosql.spi.type.TypeSignature;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import static io.prestosql.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
 import static io.prestosql.spi.function.OperatorType.SATURATED_FLOOR_CAST;
 import static io.prestosql.spi.type.BigintType.BIGINT;
 import static io.prestosql.spi.type.Decimals.bigIntegerTenToNth;

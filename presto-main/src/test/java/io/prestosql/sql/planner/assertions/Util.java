@@ -21,7 +21,7 @@ import io.prestosql.spi.TableHandle;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.TupleDomain;
-import io.prestosql.sql.planner.OrderingScheme;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.assertions.PlanMatchPattern.Ordering;
 

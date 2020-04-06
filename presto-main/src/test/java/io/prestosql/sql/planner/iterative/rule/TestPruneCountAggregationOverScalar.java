@@ -24,7 +24,7 @@ import io.prestosql.spi.type.BigintType;
 import io.prestosql.sql.planner.FunctionCallBuilder;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.rule.test.BaseRuleTest;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.Assignments;
 import io.prestosql.sql.tree.QualifiedName;
 import io.prestosql.sql.tree.SymbolReference;
@@ -35,7 +35,7 @@ import java.util.Optional;
 import static io.prestosql.plugin.tpch.TpchMetadata.TINY_SCALE_FACTOR;
 import static io.prestosql.spi.type.DoubleType.DOUBLE;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.values;
-import static io.prestosql.sql.planner.plan.AggregationNode.singleGroupingSet;
+import static io.prestosql.spi.plan.AggregationNode.singleGroupingSet;
 
 public class TestPruneCountAggregationOverScalar
         extends BaseRuleTest

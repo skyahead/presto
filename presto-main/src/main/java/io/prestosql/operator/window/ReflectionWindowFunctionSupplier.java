@@ -15,7 +15,7 @@ package io.prestosql.operator.window;
 
 import com.google.common.base.VerifyException;
 import com.google.common.collect.Lists;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.function.Description;
 import io.prestosql.spi.function.ValueWindowFunction;
 import io.prestosql.spi.function.WindowFunction;

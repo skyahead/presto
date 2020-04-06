@@ -35,7 +35,7 @@ import java.lang.invoke.MethodHandle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Throwables.throwIfUnchecked;
-import static io.prestosql.metadata.Signature.castableToTypeParameter;
+import static io.prestosql.spi.metadata.Signature.castableToTypeParameter;
 import static io.prestosql.operator.scalar.JsonOperators.JSON_FACTORY;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.RETURN_NULL_ON_NULL;

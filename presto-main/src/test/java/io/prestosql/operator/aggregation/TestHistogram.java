@@ -17,7 +17,7 @@ package io.prestosql.operator.aggregation;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.operator.aggregation.groupby.AggregationTestInput;
 import io.prestosql.operator.aggregation.groupby.AggregationTestInputBuilder;
 import io.prestosql.operator.aggregation.groupby.AggregationTestOutput;

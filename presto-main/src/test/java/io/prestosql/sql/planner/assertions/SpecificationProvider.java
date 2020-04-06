@@ -16,7 +16,7 @@ package io.prestosql.sql.planner.assertions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.spi.block.SortOrder;
-import io.prestosql.sql.planner.OrderingScheme;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.sql.planner.plan.WindowNode;
 
 import java.util.List;

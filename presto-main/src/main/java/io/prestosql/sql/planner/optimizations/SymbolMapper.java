@@ -16,12 +16,12 @@ package io.prestosql.sql.planner.optimizations;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.spi.block.SortOrder;
-import io.prestosql.sql.planner.OrderingScheme;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.sql.planner.PartitioningScheme;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
 import io.prestosql.spi.Symbol;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.sql.planner.plan.LimitNode;
 import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.spi.plan.PlanNodeId;
@@ -44,7 +44,7 @@ import java.util.Set;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.ImmutableMap.toImmutableMap;
-import static io.prestosql.sql.planner.plan.AggregationNode.groupingSets;
+import static io.prestosql.spi.plan.AggregationNode.groupingSets;
 import static java.util.Objects.requireNonNull;
 
 public class SymbolMapper

@@ -11,27 +11,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.prestosql.sql.planner.plan;
+package io.prestosql.spi.plan;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import io.prestosql.metadata.AggregationFunctionMetadata;
-import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
-import io.prestosql.spi.plan.PlanNode;
-import io.prestosql.spi.plan.PlanNodeId;
+import io.prestosql.spi.metadata.ResolvedFunction;
 
 import io.prestosql.spi.type.TypeSignature;
-import io.prestosql.sql.planner.OrderingScheme;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.LambdaExpression;
 import io.prestosql.sql.tree.SymbolReference;
-import io.prestosql.type.FunctionType;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -43,12 +38,12 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
 import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class AggregationNode
-        extends InternalPlanNode
+        extends PlanNode
 {
     private final PlanNode source;
     private final Map<Symbol, Aggregation> aggregations;
@@ -202,7 +197,7 @@ public class AggregationNode
     }
 
     @Override
-    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitAggregation(this, context);
     }
@@ -219,39 +214,6 @@ public class AggregationNode
                 !groupingSets.getGroupingKeys().isEmpty() &&
                 outputs.size() == groupingSets.getGroupingKeys().size() &&
                 outputs.containsAll(new HashSet<>(groupingSets.getGroupingKeys()));
-    }
-
-    public boolean isDecomposable(Metadata metadata)
-    {
-        boolean hasOrderBy = getAggregations().values().stream()
-                .map(Aggregation::getOrderingScheme)
-                .anyMatch(Optional::isPresent);
-
-        boolean hasDistinct = getAggregations().values().stream()
-                .anyMatch(Aggregation::isDistinct);
-
-        boolean decomposableFunctions = getAggregations().values().stream()
-                .map(Aggregation::getResolvedFunction)
-                .map(metadata::getAggregationFunctionMetadata)
-                .map(AggregationFunctionMetadata::getIntermediateType)
-                .allMatch(Optional::isPresent);
-
-        return !hasOrderBy && !hasDistinct && decomposableFunctions;
-    }
-
-    public boolean hasSingleNodeExecutionPreference(Metadata metadata)
-    {
-        // There are two kinds of aggregations the have single node execution preference:
-        //
-        // 1. aggregations with only empty grouping sets like
-        //
-        // SELECT count(*) FROM lineitem;
-        //
-        // there is no need for distributed aggregation. Single node FINAL aggregation will suffice,
-        // since all input have to be aggregated into one line output.
-        //
-        // 2. aggregations that must produce default output and are not decomposable, we cannot distribute them.
-        return (hasEmptyGroupingSet() && !hasNonEmptyGroupingSet()) || (hasDefaultOutput() && !isDecomposable(metadata));
     }
 
     public boolean isStreamable()
@@ -474,7 +436,7 @@ public class AggregationNode
                         .count();
             }
 
-            checkArgument(
+            Preconditions.checkArgument(
                     expectedArgumentCount == arguments.size(),
                     "%s aggregation function %s has %s arguments, but %s arguments were provided to function call",
                     step,

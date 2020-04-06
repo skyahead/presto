@@ -19,7 +19,7 @@ import io.airlift.slice.Slice;
 import io.airlift.units.DataSize;
 import io.prestosql.PagesIndexPageSorter;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.operator.PagesIndex;
 import io.prestosql.plugin.hive.authentication.NoHdfsAuthentication;
 import io.prestosql.plugin.hive.azure.HiveAzureConfig;

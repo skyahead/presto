@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.Lookup;
-import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.WindowNode;
 import io.prestosql.sql.tree.DefaultExpressionTraversalVisitor;

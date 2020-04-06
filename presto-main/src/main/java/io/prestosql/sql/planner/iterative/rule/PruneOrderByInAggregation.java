@@ -19,12 +19,12 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 
 import java.util.Map;
 import java.util.Optional;
 
-import static io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import static io.prestosql.spi.plan.AggregationNode.Aggregation;
 import static io.prestosql.sql.planner.plan.Patterns.aggregation;
 import static java.util.Objects.requireNonNull;
 

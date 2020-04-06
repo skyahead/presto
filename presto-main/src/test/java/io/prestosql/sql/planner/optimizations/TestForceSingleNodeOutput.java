@@ -15,16 +15,12 @@ package io.prestosql.sql.planner.optimizations;
 
 import io.prestosql.Session;
 import io.prestosql.sql.planner.assertions.BasePlanTest;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ExchangeNode;
 import org.testng.annotations.Test;
 
 import static io.prestosql.SystemSessionProperties.FORCE_SINGLE_NODE_OUTPUT;
-import static io.prestosql.sql.planner.assertions.PlanMatchPattern.anyTree;
-import static io.prestosql.sql.planner.assertions.PlanMatchPattern.exchange;
-import static io.prestosql.sql.planner.assertions.PlanMatchPattern.node;
-import static io.prestosql.sql.planner.assertions.PlanMatchPattern.output;
-import static io.prestosql.sql.planner.assertions.PlanMatchPattern.tableScan;
+import static io.prestosql.sql.planner.assertions.PlanMatchPattern.*;
 
 public class TestForceSingleNodeOutput
         extends BasePlanTest

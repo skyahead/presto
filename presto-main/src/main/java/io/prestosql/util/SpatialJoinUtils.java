@@ -13,8 +13,8 @@
  */
 package io.prestosql.util;
 
-import io.prestosql.metadata.ResolvedFunction;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.Symbol;
 import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.tree.ComparisonExpression;

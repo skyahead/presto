@@ -26,7 +26,7 @@ import io.prestosql.sql.tree.NodeRef;
 import io.prestosql.sql.tree.QualifiedName;
 import io.prestosql.sql.tree.SymbolReference;
 import io.prestosql.sql.tree.TryExpression;
-import io.prestosql.type.FunctionType;
+import io.prestosql.spi.plan.FunctionType;
 
 import java.util.Map;
 

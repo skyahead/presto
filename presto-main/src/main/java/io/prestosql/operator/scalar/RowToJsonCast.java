@@ -23,7 +23,7 @@ import io.prestosql.annotation.UsedByGeneratedCode;
 import io.prestosql.metadata.BoundVariables;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.SqlOperator;
-import io.prestosql.metadata.TypeVariableConstraint;
+import io.prestosql.spi.metadata.TypeVariableConstraint;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.connector.ConnectorSession;
 import io.prestosql.spi.function.OperatorType;

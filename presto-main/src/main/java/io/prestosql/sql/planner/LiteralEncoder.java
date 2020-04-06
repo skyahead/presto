@@ -21,7 +21,7 @@ import io.airlift.slice.SliceOutput;
 import io.airlift.slice.SliceUtf8;
 import io.prestosql.block.BlockSerdeUtil;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.operator.scalar.VarbinaryFunctions;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.type.CharType;

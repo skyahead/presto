@@ -15,7 +15,7 @@ package io.prestosql.operator.scalar.annotations;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlScalarFunction;
 import io.prestosql.operator.ParametricImplementationsGroup;
 import io.prestosql.operator.annotations.FunctionsParserHelper;

@@ -16,7 +16,7 @@ package io.prestosql.sql.planner.optimizations;
 import com.google.common.collect.ImmutableList;
 import io.prestosql.Session;
 import io.prestosql.execution.warnings.WarningCollector;
-import io.prestosql.metadata.FunctionId;
+import io.prestosql.spi.metadata.FunctionId;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.Range;

@@ -14,6 +14,7 @@
 package io.prestosql.sql.planner.optimizations;
 
 import com.google.common.collect.Range;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.iterative.GroupReference;
 import io.prestosql.sql.planner.iterative.Lookup;
 import io.prestosql.sql.planner.plan.*;

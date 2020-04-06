@@ -38,9 +38,9 @@ import org.testng.annotations.Test;
 import java.util.Optional;
 
 import static io.prestosql.spi.type.BigintType.BIGINT;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.FINAL;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.PARTIAL;
-import static io.prestosql.sql.planner.plan.AggregationNode.groupingSets;
+import static io.prestosql.spi.plan.AggregationNode.Step.FINAL;
+import static io.prestosql.spi.plan.AggregationNode.Step.PARTIAL;
+import static io.prestosql.spi.plan.AggregationNode.groupingSets;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Scope.LOCAL;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Scope.REMOTE;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Type.REPARTITION;

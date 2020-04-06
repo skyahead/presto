@@ -32,7 +32,7 @@ import static io.prestosql.sql.planner.assertions.PlanMatchPattern.project;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.singleGroupingSet;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.values;
 import static io.prestosql.sql.planner.iterative.rule.test.PlanBuilder.expression;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.PARTIAL;
+import static io.prestosql.spi.plan.AggregationNode.Step.PARTIAL;
 import static io.prestosql.sql.planner.plan.JoinNode.Type.INNER;
 
 public class TestPushPartialAggregationThroughJoin

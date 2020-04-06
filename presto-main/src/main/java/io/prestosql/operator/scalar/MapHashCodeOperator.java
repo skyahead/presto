@@ -24,7 +24,7 @@ import io.prestosql.spi.type.TypeSignature;
 
 import java.lang.invoke.MethodHandle;
 
-import static io.prestosql.metadata.Signature.comparableTypeParameter;
+import static io.prestosql.spi.metadata.Signature.comparableTypeParameter;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.RETURN_NULL_ON_NULL;
 import static io.prestosql.spi.function.OperatorType.HASH_CODE;

@@ -25,7 +25,7 @@ import io.prestosql.type.Re2JRegexp;
 
 import java.lang.invoke.MethodHandle;
 
-import static io.prestosql.operator.TypeSignatureParser.parseTypeSignature;
+import static io.prestosql.spi.metadata.TypeSignatureParser.parseTypeSignature;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.RETURN_NULL_ON_NULL;
 import static io.prestosql.spi.StandardErrorCode.INVALID_FUNCTION_ARGUMENT;

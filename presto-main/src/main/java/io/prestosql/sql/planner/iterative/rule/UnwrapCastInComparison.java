@@ -17,7 +17,7 @@ import io.prestosql.Session;
 import io.prestosql.SystemSessionProperties;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.OperatorNotFoundException;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.predicate.Utils;
 import io.prestosql.spi.type.DecimalType;

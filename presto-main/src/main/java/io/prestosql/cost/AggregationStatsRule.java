@@ -18,14 +18,14 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.Lookup;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
 import static io.prestosql.sql.planner.plan.Patterns.aggregation;
 import static java.lang.Math.min;
 import static java.util.Objects.requireNonNull;

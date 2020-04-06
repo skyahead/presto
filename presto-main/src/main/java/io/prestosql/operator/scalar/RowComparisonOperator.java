@@ -15,7 +15,7 @@ package io.prestosql.operator.scalar;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.metadata.SqlOperator;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.function.OperatorType;
@@ -27,7 +27,7 @@ import io.prestosql.spi.type.TypeSignature;
 import java.lang.invoke.MethodHandle;
 import java.util.List;
 
-import static io.prestosql.metadata.Signature.orderableWithVariadicBound;
+import static io.prestosql.spi.metadata.Signature.orderableWithVariadicBound;
 import static io.prestosql.spi.type.BooleanType.BOOLEAN;
 import static io.prestosql.spi.type.TypeUtils.readNativeValue;
 import static io.prestosql.type.TypeUtils.checkElementNotNull;

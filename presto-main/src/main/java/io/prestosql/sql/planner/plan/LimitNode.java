@@ -20,7 +20,7 @@ import com.google.common.collect.Iterables;
 import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.spi.plan.PlanNodeId;
 
-import io.prestosql.sql.planner.OrderingScheme;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.Symbol;
 
 import javax.annotation.concurrent.Immutable;

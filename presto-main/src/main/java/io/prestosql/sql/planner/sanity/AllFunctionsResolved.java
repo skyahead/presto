@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList.Builder;
 import io.prestosql.Session;
 import io.prestosql.execution.warnings.WarningCollector;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.sql.planner.ExpressionExtractor;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeAnalyzer;

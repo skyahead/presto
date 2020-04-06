@@ -15,6 +15,7 @@
 package io.prestosql.cost;
 
 import io.prestosql.Session;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.GroupReference;
 import io.prestosql.sql.planner.iterative.rule.DetermineJoinDistributionType;

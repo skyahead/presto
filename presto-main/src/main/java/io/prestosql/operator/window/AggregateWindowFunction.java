@@ -14,7 +14,7 @@
 package io.prestosql.operator.window;
 
 import com.google.common.collect.ImmutableList;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.operator.aggregation.Accumulator;
 import io.prestosql.operator.aggregation.AccumulatorFactory;
 import io.prestosql.operator.aggregation.InternalAggregationFunction;

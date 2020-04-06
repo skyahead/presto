@@ -61,7 +61,7 @@ import java.util.concurrent.TimeUnit;
 
 import static io.prestosql.memory.context.AggregatedMemoryContext.newSimpleAggregatedMemoryContext;
 import static io.prestosql.metadata.MetadataManager.createTestMetadataManager;
-import static io.prestosql.metadata.Signature.mangleOperatorName;
+import static io.prestosql.spi.metadata.Signature.mangleOperatorName;
 import static io.prestosql.operator.scalar.CombineHashFunction.getHash;
 import static io.prestosql.spi.function.OperatorType.HASH_CODE;
 import static io.prestosql.spi.type.ArrayType.ARRAY_NULL_ELEMENT_MSG;

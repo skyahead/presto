@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import io.prestosql.Session;
 import io.prestosql.cost.StatsProvider;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.sql.planner.OrderingScheme;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.sql.planner.assertions.PlanMatchPattern.Ordering;
 import io.prestosql.sql.planner.plan.LimitNode;
 import io.prestosql.spi.plan.PlanNode;

@@ -20,15 +20,16 @@ import io.airlift.slice.Slices;
 import io.prestosql.operator.scalar.ScalarFunctionImplementation;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.block.LongArrayBlock;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.type.TypeSignature;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
 import java.util.Optional;
 
-import static io.prestosql.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
 import static io.prestosql.metadata.MetadataManager.createTestMetadataManager;
-import static io.prestosql.metadata.Signature.comparableWithVariadicBound;
+import static io.prestosql.spi.metadata.Signature.comparableWithVariadicBound;
 import static io.prestosql.metadata.TestPolymorphicScalarFunction.TestMethods.VARCHAR_TO_BIGINT_RETURN_VALUE;
 import static io.prestosql.metadata.TestPolymorphicScalarFunction.TestMethods.VARCHAR_TO_VARCHAR_RETURN_VALUE;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;

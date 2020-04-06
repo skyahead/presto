@@ -30,7 +30,7 @@ import io.prestosql.spi.type.BigintType;
 import io.prestosql.spi.type.Type;
 import io.prestosql.spiller.SpillerFactory;
 import io.prestosql.sql.gen.JoinCompiler;
-import io.prestosql.sql.planner.plan.AggregationNode.Step;
+import io.prestosql.spi.plan.AggregationNode.Step;
 import io.prestosql.spi.plan.PlanNodeId;
 
 import java.util.List;

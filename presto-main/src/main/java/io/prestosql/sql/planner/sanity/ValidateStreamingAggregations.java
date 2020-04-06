@@ -25,7 +25,7 @@ import io.prestosql.sql.planner.TypeAnalyzer;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.optimizations.LocalProperties;
 import io.prestosql.sql.planner.optimizations.StreamPropertyDerivations.StreamProperties;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.PlanNode;
 
 import io.prestosql.sql.planner.plan.InternalPlanVisitor;

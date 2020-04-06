@@ -17,7 +17,7 @@ import com.google.common.annotations.VisibleForTesting;
 import io.prestosql.metadata.BoundVariables;
 import io.prestosql.metadata.FunctionMetadata;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlScalarFunction;
 import io.prestosql.operator.ParametricImplementationsGroup;
 import io.prestosql.operator.scalar.annotations.ParametricScalarImplementation;
@@ -25,7 +25,7 @@ import io.prestosql.spi.PrestoException;
 
 import java.util.Optional;
 
-import static io.prestosql.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
 import static io.prestosql.metadata.SignatureBinder.applyBoundVariables;
 import static io.prestosql.spi.StandardErrorCode.AMBIGUOUS_FUNCTION_IMPLEMENTATION;
 import static io.prestosql.spi.StandardErrorCode.FUNCTION_IMPLEMENTATION_ERROR;

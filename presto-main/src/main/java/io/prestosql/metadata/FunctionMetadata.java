@@ -14,6 +14,9 @@
 package io.prestosql.metadata;
 
 import com.google.common.collect.ImmutableList;
+import io.prestosql.spi.metadata.FunctionId;
+import io.prestosql.spi.metadata.FunctionKind;
+import io.prestosql.spi.metadata.Signature;
 
 import java.util.List;
 

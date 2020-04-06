@@ -38,8 +38,8 @@ import static io.prestosql.sql.planner.assertions.PlanMatchPattern.project;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.singleGroupingSet;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.values;
 import static io.prestosql.sql.planner.iterative.rule.test.PlanBuilder.expressions;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
-import static io.prestosql.sql.planner.plan.AggregationNode.groupingSets;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.groupingSets;
 
 public class TestPushAggregationThroughOuterJoin
         extends BaseRuleTest

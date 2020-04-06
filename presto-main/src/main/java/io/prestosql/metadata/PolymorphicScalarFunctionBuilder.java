@@ -17,6 +17,7 @@ import com.google.common.collect.ImmutableList;
 import io.prestosql.metadata.PolymorphicScalarFunction.PolymorphicScalarFunctionChoice;
 import io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty;
 import io.prestosql.spi.function.OperatorType;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.type.Type;
 
 import java.lang.reflect.Method;
@@ -29,8 +30,8 @@ import java.util.function.Function;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.collect.ImmutableList.toImmutableList;
-import static io.prestosql.metadata.FunctionKind.SCALAR;
-import static io.prestosql.metadata.Signature.mangleOperatorName;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.Signature.mangleOperatorName;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.BLOCK_AND_POSITION;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.RETURN_NULL_ON_NULL;

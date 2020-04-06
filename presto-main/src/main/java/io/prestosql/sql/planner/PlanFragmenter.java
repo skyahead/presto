@@ -30,6 +30,7 @@ import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.PrestoWarning;
 import io.prestosql.spi.connector.ConnectorPartitionHandle;
 import io.prestosql.spi.connector.ConnectorPartitioningHandle;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.planner.plan.*;
 import io.prestosql.spi.plan.PlanNode;

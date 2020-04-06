@@ -15,7 +15,7 @@ package io.prestosql.sql.relational;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.sql.tree.QualifiedName;
 import org.testng.annotations.Test;
 

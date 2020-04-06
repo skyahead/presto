@@ -17,7 +17,7 @@ import io.airlift.slice.Slice;
 import io.prestosql.annotation.UsedByGeneratedCode;
 import io.prestosql.metadata.FunctionArgumentDefinition;
 import io.prestosql.metadata.PolymorphicScalarFunctionBuilder;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlScalarFunction;
 import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.block.Block;
@@ -30,7 +30,7 @@ import java.util.Optional;
 
 import static com.google.common.base.Throwables.throwIfInstanceOf;
 import static io.airlift.slice.SizeOf.SIZE_OF_LONG;
-import static io.prestosql.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
 import static io.prestosql.metadata.PolymorphicScalarFunctionBuilder.constant;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.BLOCK_AND_POSITION;

@@ -22,7 +22,7 @@ import com.google.common.primitives.Primitives;
 import io.prestosql.Session;
 import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.warnings.WarningCollector;
-import io.prestosql.metadata.FunctionKind;
+import io.prestosql.spi.metadata.FunctionKind;
 import io.prestosql.metadata.FunctionMetadata;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.QualifiedObjectName;

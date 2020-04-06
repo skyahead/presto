@@ -19,7 +19,7 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolsExtractor;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 
 import java.util.Set;
 import java.util.stream.Stream;

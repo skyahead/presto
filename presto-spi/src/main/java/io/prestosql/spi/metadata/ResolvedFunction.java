@@ -11,14 +11,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.prestosql.metadata;
+package io.prestosql.spi.metadata;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Joiner;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
-import io.prestosql.operator.TypeSignatureParser;
+import io.prestosql.spi.metadata.TypeSignatureParser;
 import io.prestosql.spi.type.TypeSignature;
 import io.prestosql.sql.tree.QualifiedName;
 
@@ -45,8 +46,8 @@ public class ResolvedFunction
     {
         this.signature = requireNonNull(signature, "signature is null");
         this.functionId = requireNonNull(functionId, "functionId is null");
-        checkArgument(signature.getTypeVariableConstraints().isEmpty() && signature.getLongVariableConstraints().isEmpty(), "%s has unbound type parameters", signature);
-        checkArgument(!signature.isVariableArity(), "%s has variable arity", signature);
+        Preconditions.checkArgument(signature.getTypeVariableConstraints().isEmpty() && signature.getLongVariableConstraints().isEmpty(), "%s has unbound type parameters", signature);
+        Preconditions.checkArgument(!signature.isVariableArity(), "%s has variable arity", signature);
     }
 
     @JsonProperty

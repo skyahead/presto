@@ -40,6 +40,8 @@ import io.prestosql.spi.connector.SampleType;
 import io.prestosql.spi.connector.SystemTable;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.function.OperatorType;
+import io.prestosql.spi.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -63,8 +65,8 @@ import java.util.Optional;
 import java.util.OptionalLong;
 import java.util.Set;
 
-import static io.prestosql.metadata.FunctionId.toFunctionId;
-import static io.prestosql.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.FunctionId.toFunctionId;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
 import static io.prestosql.spi.StandardErrorCode.FUNCTION_NOT_FOUND;
 import static io.prestosql.spi.type.DoubleType.DOUBLE;
 

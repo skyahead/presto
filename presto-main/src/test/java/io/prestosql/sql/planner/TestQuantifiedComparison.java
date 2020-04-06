@@ -15,7 +15,7 @@ package io.prestosql.sql.planner;
 
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.sql.planner.assertions.BasePlanTest;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.JoinNode;
 import io.prestosql.sql.planner.plan.ValuesNode;
 import org.testng.annotations.Test;

@@ -15,7 +15,7 @@ package io.prestosql.sql.planner.assertions;
 
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.Symbol;
 import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.WindowNode;

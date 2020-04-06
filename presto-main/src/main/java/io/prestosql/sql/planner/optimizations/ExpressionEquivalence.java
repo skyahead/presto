@@ -21,7 +21,7 @@ import com.google.common.collect.Ordering;
 import io.airlift.slice.Slice;
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.planner.DesugarArrayConstructorRewriter;
 import io.prestosql.sql.planner.DesugarLikeRewriter;
@@ -48,7 +48,7 @@ import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.ImmutableList.toImmutableList;
-import static io.prestosql.metadata.Signature.mangleOperatorName;
+import static io.prestosql.spi.metadata.Signature.mangleOperatorName;
 import static io.prestosql.spi.function.OperatorType.EQUAL;
 import static io.prestosql.spi.function.OperatorType.GREATER_THAN;
 import static io.prestosql.spi.function.OperatorType.GREATER_THAN_OR_EQUAL;

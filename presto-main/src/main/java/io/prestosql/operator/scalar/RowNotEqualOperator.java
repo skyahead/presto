@@ -25,7 +25,7 @@ import io.prestosql.spi.type.TypeSignature;
 import java.lang.invoke.MethodHandle;
 import java.util.List;
 
-import static io.prestosql.metadata.Signature.comparableWithVariadicBound;
+import static io.prestosql.spi.metadata.Signature.comparableWithVariadicBound;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.ArgumentProperty.valueTypeArgumentProperty;
 import static io.prestosql.operator.scalar.ScalarFunctionImplementation.NullConvention.RETURN_NULL_ON_NULL;
 import static io.prestosql.spi.function.OperatorType.NOT_EQUAL;

@@ -13,11 +13,7 @@
  */
 package io.prestosql.sql.planner.plan;
 
-import io.prestosql.spi.plan.FilterNode;
-import io.prestosql.spi.plan.PlanNode;
-import io.prestosql.spi.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.InternalPlanVisitor;
-import io.prestosql.spi.plan.TableScanNode;
+import io.prestosql.spi.plan.*;
 import io.prestosql.sql.planner.iterative.GroupReference;
 
 public abstract class InternalPlanVisitor<R, C>

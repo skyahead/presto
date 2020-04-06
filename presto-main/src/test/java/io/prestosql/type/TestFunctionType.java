@@ -14,6 +14,7 @@
 package io.prestosql.type;
 
 import com.google.common.collect.ImmutableList;
+import io.prestosql.spi.plan.FunctionType;
 import io.prestosql.spi.type.RowType;
 import io.prestosql.spi.type.Type;
 import org.testng.annotations.Test;

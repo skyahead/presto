@@ -40,7 +40,7 @@ import static io.prestosql.sql.planner.assertions.PlanMatchPattern.specification
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.tableScan;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.topNRowNumber;
 import static io.prestosql.sql.planner.assertions.PlanMatchPattern.window;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.FINAL;
+import static io.prestosql.spi.plan.AggregationNode.Step.FINAL;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Scope.LOCAL;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Scope.REMOTE;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Type.GATHER;

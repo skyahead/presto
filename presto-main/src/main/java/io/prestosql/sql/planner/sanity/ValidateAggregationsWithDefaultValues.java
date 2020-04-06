@@ -22,7 +22,7 @@ import io.prestosql.sql.planner.optimizations.ActualProperties;
 import io.prestosql.sql.planner.optimizations.PropertyDerivations;
 import io.prestosql.sql.planner.optimizations.StreamPropertyDerivations;
 import io.prestosql.sql.planner.optimizations.StreamPropertyDerivations.StreamProperties;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ExchangeNode;
 import io.prestosql.spi.plan.PlanNode;
 
@@ -34,9 +34,9 @@ import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.FINAL;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.INTERMEDIATE;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.PARTIAL;
+import static io.prestosql.spi.plan.AggregationNode.Step.FINAL;
+import static io.prestosql.spi.plan.AggregationNode.Step.INTERMEDIATE;
+import static io.prestosql.spi.plan.AggregationNode.Step.PARTIAL;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Scope.REMOTE;
 import static io.prestosql.sql.planner.plan.ExchangeNode.Type.REPARTITION;
 import static io.prestosql.util.Optionals.combine;

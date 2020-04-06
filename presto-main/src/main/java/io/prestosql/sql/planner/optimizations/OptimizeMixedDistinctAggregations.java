@@ -25,8 +25,8 @@ import io.prestosql.sql.planner.PlanNodeIdAllocator;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.sql.planner.plan.Assignments;
 import io.prestosql.sql.planner.plan.GroupIdNode;
 import io.prestosql.sql.planner.plan.MarkDistinctNode;
@@ -55,8 +55,8 @@ import static io.prestosql.SystemSessionProperties.isOptimizeDistinctAggregation
 import static io.prestosql.spi.type.BigintType.BIGINT;
 import static io.prestosql.sql.analyzer.TypeSignatureProvider.fromTypes;
 import static io.prestosql.sql.analyzer.TypeSignatureTranslator.toSqlType;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
-import static io.prestosql.sql.planner.plan.AggregationNode.singleGroupingSet;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.singleGroupingSet;
 import static java.util.Objects.requireNonNull;
 
 /*

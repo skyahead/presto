@@ -13,7 +13,7 @@
  */
 package io.prestosql.operator.window;
 
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.function.WindowFunction;
 
 import java.util.List;

@@ -14,7 +14,7 @@
 package io.prestosql.operator;
 
 import io.prestosql.metadata.FunctionArgumentDefinition;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 
 import java.util.List;
 

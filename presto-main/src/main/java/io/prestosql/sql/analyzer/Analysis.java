@@ -22,7 +22,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Multiset;
 import io.prestosql.metadata.NewTableLayout;
 import io.prestosql.metadata.QualifiedObjectName;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.TableHandle;
 import io.prestosql.security.AccessControl;
 import io.prestosql.security.SecurityContext;

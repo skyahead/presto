@@ -35,7 +35,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import static io.prestosql.spi.type.BigintType.BIGINT;
-import static io.prestosql.sql.planner.plan.AggregationNode.Step.SINGLE;
+import static io.prestosql.spi.plan.AggregationNode.Step.SINGLE;
 
 public class TestValidateStreamingAggregations
         extends BasePlanTest

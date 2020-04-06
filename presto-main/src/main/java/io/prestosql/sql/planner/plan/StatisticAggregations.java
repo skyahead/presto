@@ -19,11 +19,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.metadata.AggregationFunctionMetadata;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.type.Type;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
-import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 
 import java.util.List;
 import java.util.Map;

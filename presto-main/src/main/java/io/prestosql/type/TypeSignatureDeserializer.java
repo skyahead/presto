@@ -20,7 +20,7 @@ import io.prestosql.spi.type.TypeSignature;
 
 import javax.inject.Inject;
 
-import static io.prestosql.operator.TypeSignatureParser.parseTypeSignature;
+import static io.prestosql.spi.metadata.TypeSignatureParser.parseTypeSignature;
 
 public final class TypeSignatureDeserializer
         extends FromStringDeserializer<TypeSignature>

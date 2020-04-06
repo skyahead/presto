@@ -33,7 +33,7 @@ import io.prestosql.sql.relational.LambdaDefinitionExpression;
 import io.prestosql.sql.relational.RowExpression;
 import io.prestosql.sql.relational.VariableReferenceExpression;
 import io.prestosql.sql.tree.QualifiedName;
-import io.prestosql.type.FunctionType;
+import io.prestosql.spi.plan.FunctionType;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;

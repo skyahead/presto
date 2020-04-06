@@ -17,12 +17,13 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.Partitioning.ArgumentBinding;
 import io.prestosql.sql.planner.PlanFragment;
 import io.prestosql.sql.planner.SubPlan;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.*;
-import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.FilterNode;
 import io.prestosql.spi.plan.PlanNode;
 

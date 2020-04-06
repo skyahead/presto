@@ -22,6 +22,7 @@ import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.Symbol;
 import io.prestosql.spi.connector.ColumnHandle;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.type.Type;

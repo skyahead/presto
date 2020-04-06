@@ -18,7 +18,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.operator.AggregationOperator.AggregationOperatorFactory;
 import io.prestosql.operator.OperatorFactory;
 import io.prestosql.operator.aggregation.InternalAggregationFunction;
-import io.prestosql.sql.planner.plan.AggregationNode.Step;
+import io.prestosql.spi.plan.AggregationNode.Step;
 import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.tree.QualifiedName;
 import io.prestosql.testing.LocalQueryRunner;

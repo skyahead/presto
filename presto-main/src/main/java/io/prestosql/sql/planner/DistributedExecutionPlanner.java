@@ -22,16 +22,12 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.TableMetadata;
 import io.prestosql.metadata.TableProperties;
 import io.prestosql.operator.StageExecutionDescriptor;
+import io.prestosql.spi.plan.*;
 import io.prestosql.split.SampledSplitSource;
 import io.prestosql.split.SplitManager;
 import io.prestosql.split.SplitSource;
 import io.prestosql.sql.DynamicFilters;
 import io.prestosql.sql.planner.plan.*;
-import io.prestosql.spi.plan.FilterNode;
-import io.prestosql.spi.plan.PlanNode;
-import io.prestosql.spi.plan.PlanNodeId;
-
-import io.prestosql.spi.plan.TableScanNode;
 
 import javax.inject.Inject;
 

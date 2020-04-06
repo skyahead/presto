@@ -19,7 +19,7 @@ import io.prestosql.sql.planner.iterative.rule.RewriteSpatialPartitioningAggrega
 import io.prestosql.sql.planner.iterative.rule.test.BaseRuleTest;
 import io.prestosql.sql.planner.iterative.rule.test.PlanBuilder;
 import io.prestosql.sql.planner.iterative.rule.test.RuleAssert;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import org.testng.annotations.Test;
 
 import static io.prestosql.plugin.geospatial.GeometryType.GEOMETRY;

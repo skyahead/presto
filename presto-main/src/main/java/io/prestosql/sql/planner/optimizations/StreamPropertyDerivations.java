@@ -23,6 +23,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.TableProperties;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.LocalProperty;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.Partitioning.ArgumentBinding;
 import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeAnalyzer;

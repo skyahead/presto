@@ -13,6 +13,7 @@
  */
 package io.prestosql.sql.planner.optimizations;
 
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.*;
 import io.prestosql.spi.plan.FilterNode;
 import io.prestosql.spi.plan.PlanNode;

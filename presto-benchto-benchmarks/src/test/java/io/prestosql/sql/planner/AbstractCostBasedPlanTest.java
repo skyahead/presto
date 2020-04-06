@@ -21,7 +21,7 @@ import io.prestosql.plugin.tpcds.TpcdsTableHandle;
 import io.prestosql.plugin.tpch.TpchTableHandle;
 import io.prestosql.spi.connector.ConnectorTableHandle;
 import io.prestosql.sql.planner.assertions.BasePlanTest;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ExchangeNode;
 import io.prestosql.sql.planner.plan.JoinNode;
 import io.prestosql.sql.planner.plan.SemiJoinNode;

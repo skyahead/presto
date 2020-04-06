@@ -44,7 +44,7 @@ import io.prestosql.sql.tree.SimpleCaseExpression;
 import io.prestosql.sql.tree.SubscriptExpression;
 import io.prestosql.sql.tree.SymbolReference;
 import io.prestosql.sql.tree.WhenClause;
-import io.prestosql.type.FunctionType;
+import io.prestosql.spi.plan.FunctionType;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;

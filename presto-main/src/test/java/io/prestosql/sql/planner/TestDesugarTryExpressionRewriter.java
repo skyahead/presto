@@ -24,7 +24,7 @@ import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.LambdaExpression;
 import io.prestosql.sql.tree.QualifiedName;
 import io.prestosql.sql.tree.TryExpression;
-import io.prestosql.type.FunctionType;
+import io.prestosql.spi.plan.FunctionType;
 import org.testng.annotations.Test;
 
 import static io.prestosql.spi.type.DecimalType.createDecimalType;

@@ -14,7 +14,7 @@
 package io.prestosql.sql.relational;
 
 import com.google.common.collect.ImmutableList;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.type.Type;
 
 import java.util.Arrays;

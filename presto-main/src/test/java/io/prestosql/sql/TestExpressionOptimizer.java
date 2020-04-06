@@ -15,7 +15,7 @@ package io.prestosql.sql;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.block.IntArrayBlock;
 import io.prestosql.spi.type.ArrayType;
 import io.prestosql.spi.type.RowType;

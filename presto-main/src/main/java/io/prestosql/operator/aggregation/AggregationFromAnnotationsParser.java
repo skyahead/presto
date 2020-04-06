@@ -17,7 +17,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.MoreCollectors;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.operator.ParametricImplementationsGroup;
 import io.prestosql.operator.annotations.FunctionsParserHelper;
 import io.prestosql.spi.function.AccumulatorState;

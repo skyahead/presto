@@ -15,7 +15,7 @@
 package io.prestosql.sql.gen;
 
 import io.airlift.bytecode.BytecodeNode;
-import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.gen.LambdaBytecodeGenerator.CompiledLambda;
 import io.prestosql.sql.relational.LambdaDefinitionExpression;

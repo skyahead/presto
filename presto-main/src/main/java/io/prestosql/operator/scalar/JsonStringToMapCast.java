@@ -18,13 +18,13 @@ import io.prestosql.metadata.BoundVariables;
 import io.prestosql.metadata.FunctionArgumentDefinition;
 import io.prestosql.metadata.FunctionMetadata;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.Signature;
+import io.prestosql.spi.metadata.Signature;
 import io.prestosql.metadata.SqlScalarFunction;
 import io.prestosql.spi.type.TypeSignature;
 
-import static io.prestosql.metadata.FunctionKind.SCALAR;
-import static io.prestosql.metadata.Signature.comparableTypeParameter;
-import static io.prestosql.metadata.Signature.typeVariable;
+import static io.prestosql.spi.metadata.FunctionKind.SCALAR;
+import static io.prestosql.spi.metadata.Signature.comparableTypeParameter;
+import static io.prestosql.spi.metadata.Signature.typeVariable;
 import static io.prestosql.operator.scalar.JsonToMapCast.JSON_TO_MAP;
 import static io.prestosql.spi.type.TypeSignature.mapType;
 import static io.prestosql.spi.type.VarcharType.VARCHAR;
