@@ -15,6 +15,7 @@ package io.prestosql.plugin.jdbc;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import io.airlift.slice.Slice;
 import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.Symbol;
@@ -33,27 +34,26 @@ import io.prestosql.spi.connector.ConnectorTableProperties;
 import io.prestosql.spi.connector.Constraint;
 import io.prestosql.spi.connector.ConstraintApplicationResult;
 import io.prestosql.spi.connector.LimitApplicationResult;
+import io.prestosql.spi.connector.ProjectionApplicationResult;
+import io.prestosql.spi.connector.ProjectionApplicationResult.Assignment;
 import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.spi.connector.SchemaTablePrefix;
 import io.prestosql.spi.connector.TableNotFoundException;
 import io.prestosql.spi.connector.TopNApplicationResult;
+import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.statistics.ComputedStatistics;
 import io.prestosql.spi.statistics.TableStatistics;
-import io.prestosql.sql.tree.Expression;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalLong;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -110,6 +110,7 @@ public class JdbcMetadata
                 handle.getCatalogName(),
                 handle.getSchemaName(),
                 handle.getTableName(),
+                handle.getColumns(),
                 newDomain,
                 handle.getLimit(),
                 handle.getAggregations(),
@@ -117,6 +118,44 @@ public class JdbcMetadata
                 Optional.empty());
 
         return Optional.of(new ConstraintApplicationResult<>(handle, TupleDomain.all()));
+    }
+
+    @Override
+    public Optional<ProjectionApplicationResult<ConnectorTableHandle>> applyProjection(
+            ConnectorSession session,
+            ConnectorTableHandle table,
+            List<ConnectorExpression> projections,
+            Map<String, ColumnHandle> assignments)
+    {
+        JdbcTableHandle handle = (JdbcTableHandle) table;
+
+        List<JdbcColumnHandle> newColumns = assignments.values().stream()
+                .map(JdbcColumnHandle.class::cast)
+                .collect(toImmutableList());
+
+        if (handle.getColumns().isPresent() && containSameElements(newColumns, handle.getColumns().get())) {
+            return Optional.empty();
+        }
+
+        return Optional.of(new ProjectionApplicationResult<>(
+                new JdbcTableHandle(
+                        handle.getSchemaTableName(),
+                        handle.getCatalogName(),
+                        handle.getSchemaName(),
+                        handle.getTableName(),
+                        Optional.of(newColumns),
+                        handle.getConstraint(),
+                        handle.getLimit(),
+                        handle.getAggregations(),
+                        handle.getGroupingSets(),
+                        handle.getOrderingScheme()),
+                projections,
+                assignments.entrySet().stream()
+                        .map(assignment -> new Assignment(
+                                assignment.getKey(),
+                                assignment.getValue(),
+                                ((JdbcColumnHandle) assignment.getValue()).getColumnType()))
+                        .collect(toImmutableList())));
     }
 
     @Override
@@ -137,6 +176,7 @@ public class JdbcMetadata
             handle.getCatalogName(),
             handle.getSchemaName(),
             handle.getTableName(),
+            handle.getColumns(),
             handle.getConstraint(),
             OptionalLong.of(limit),
             handle.getAggregations(),
@@ -164,6 +204,7 @@ public class JdbcMetadata
             handle.getCatalogName(),
             handle.getSchemaName(),
             handle.getTableName(),
+            handle.getColumns(),
             handle.getConstraint(),
             OptionalLong.of(limit),
             handle.getAggregations(),
@@ -187,6 +228,7 @@ public class JdbcMetadata
             handle.getCatalogName(),
             handle.getSchemaName(),
             handle.getTableName(),
+            handle.getColumns(),
             handle.getConstraint(),
             handle.getLimit(),
             Optional.of(aggregations),
@@ -386,5 +428,10 @@ public class JdbcMetadata
     public void dropSchema(ConnectorSession session, String schemaName)
     {
         jdbcClient.dropSchema(JdbcIdentity.from(session), schemaName);
+    }
+
+    private static boolean containSameElements(Iterable<? extends ColumnHandle> first, Iterable<? extends ColumnHandle> second)
+    {
+        return ImmutableSet.copyOf(first).equals(ImmutableSet.copyOf(second));
     }
 }

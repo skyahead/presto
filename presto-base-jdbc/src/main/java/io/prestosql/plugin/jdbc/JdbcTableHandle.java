@@ -16,6 +16,7 @@ package io.prestosql.plugin.jdbc;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableList;
 import io.prestosql.spi.Symbol;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ConnectorTableHandle;
@@ -28,6 +29,7 @@ import io.prestosql.spi.predicate.TupleDomain;
 
 import javax.annotation.Nullable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,6 +46,7 @@ public final class JdbcTableHandle
     private final String catalogName;
     private final String schemaName;
     private final String tableName;
+    private final Optional<List<JdbcColumnHandle>> columns;
     private final TupleDomain<ColumnHandle> constraint;
     private final OptionalLong limit;
     private final Optional<Map<Symbol, Aggregation>> aggregations;
@@ -52,7 +55,7 @@ public final class JdbcTableHandle
 
     public JdbcTableHandle(SchemaTableName schemaTableName, @Nullable String catalogName, @Nullable String schemaName, String tableName)
     {
-        this(schemaTableName, catalogName, schemaName, tableName, TupleDomain.all(), OptionalLong.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(schemaTableName, catalogName, schemaName, tableName, Optional.empty(), TupleDomain.all(), OptionalLong.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonCreator
@@ -61,6 +64,7 @@ public final class JdbcTableHandle
         @JsonProperty("catalogName") @Nullable String catalogName,
         @JsonProperty("schemaName") @Nullable String schemaName,
         @JsonProperty("tableName") String tableName,
+        @JsonProperty("columns") Optional<List<JdbcColumnHandle>> columns,
         @JsonProperty("constraint") TupleDomain<ColumnHandle> constraint,
         @JsonProperty("limit") OptionalLong limit,
         @JsonProperty("aggregations") Optional<Map<Symbol, Aggregation>> aggregations,
@@ -71,6 +75,8 @@ public final class JdbcTableHandle
         this.catalogName = catalogName;
         this.schemaName = schemaName;
         this.tableName = requireNonNull(tableName, "tableName is null");
+        requireNonNull(columns, "columns is null");
+        this.columns = columns.map(ImmutableList::copyOf);
         this.constraint = requireNonNull(constraint, "constraint is null");
         this.limit = requireNonNull(limit, "limit is null");
         this.aggregations = aggregations;
@@ -102,6 +108,12 @@ public final class JdbcTableHandle
     public String getTableName()
     {
         return tableName;
+    }
+
+    @JsonProperty
+    public Optional<List<JdbcColumnHandle>> getColumns()
+    {
+        return columns;
     }
 
     @JsonProperty
@@ -159,6 +171,7 @@ public final class JdbcTableHandle
         StringBuilder builder = new StringBuilder();
         builder.append(schemaTableName).append(" ");
         Joiner.on(".").skipNulls().appendTo(builder, catalogName, schemaName, tableName);
+        columns.ifPresent(value -> builder.append(" columns=").append(value));
         limit.ifPresent(value -> builder.append(" limit=").append(value));
         aggregations.ifPresent(agg -> {
             builder.append(" aggregations: ");

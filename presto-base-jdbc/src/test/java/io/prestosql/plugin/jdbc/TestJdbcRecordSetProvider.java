@@ -185,6 +185,7 @@ public class TestJdbcRecordSetProvider
                 jdbcTableHandle.getCatalogName(),
                 jdbcTableHandle.getSchemaName(),
                 jdbcTableHandle.getTableName(),
+                Optional.empty(),
                 domain,
                 OptionalLong.empty(),
                 Optional.empty(),
