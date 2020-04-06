@@ -22,8 +22,9 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import io.airlift.slice.Slice;
 import io.prestosql.Session;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.TableHandle;
-import io.prestosql.spi.connector.CatalogName;
+import io.prestosql.spi.connector.*;
 import io.prestosql.operator.aggregation.InternalAggregationFunction;
 import io.prestosql.operator.scalar.ScalarFunctionImplementation;
 import io.prestosql.operator.window.WindowFunctionSupplier;
@@ -45,38 +46,13 @@ import io.prestosql.spi.block.ShortArrayBlockEncoding;
 import io.prestosql.spi.block.SingleMapBlockEncoding;
 import io.prestosql.spi.block.SingleRowBlockEncoding;
 import io.prestosql.spi.block.VariableWidthBlockEncoding;
-import io.prestosql.spi.connector.CatalogSchemaName;
-import io.prestosql.spi.connector.ColumnHandle;
-import io.prestosql.spi.connector.ColumnMetadata;
-import io.prestosql.spi.connector.ConnectorCapabilities;
-import io.prestosql.spi.connector.ConnectorInsertTableHandle;
-import io.prestosql.spi.connector.ConnectorMetadata;
-import io.prestosql.spi.connector.ConnectorOutputMetadata;
-import io.prestosql.spi.connector.ConnectorOutputTableHandle;
-import io.prestosql.spi.connector.ConnectorPartitioningHandle;
-import io.prestosql.spi.connector.ConnectorResolvedIndex;
-import io.prestosql.spi.connector.ConnectorSession;
-import io.prestosql.spi.connector.ConnectorTableHandle;
-import io.prestosql.spi.connector.ConnectorTableLayout;
-import io.prestosql.spi.connector.ConnectorTableLayoutHandle;
-import io.prestosql.spi.connector.ConnectorTableLayoutResult;
-import io.prestosql.spi.connector.ConnectorTableMetadata;
-import io.prestosql.spi.connector.ConnectorTableProperties;
-import io.prestosql.spi.connector.ConnectorTransactionHandle;
-import io.prestosql.spi.connector.ConnectorViewDefinition;
-import io.prestosql.spi.connector.Constraint;
-import io.prestosql.spi.connector.ConstraintApplicationResult;
-import io.prestosql.spi.connector.LimitApplicationResult;
-import io.prestosql.spi.connector.ProjectionApplicationResult;
-import io.prestosql.spi.connector.SampleType;
-import io.prestosql.spi.connector.SchemaTableName;
-import io.prestosql.spi.connector.SchemaTablePrefix;
-import io.prestosql.spi.connector.SystemTable;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.function.OperatorType;
 import io.prestosql.spi.metadata.FunctionId;
 import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.metadata.Signature;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -1108,6 +1084,26 @@ public final class MetadataManager
                         result.getProjections(),
                         result.getAssignments()));
     }
+
+    @Override
+    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, GroupingSetDescriptor groupingSets, Map<Symbol, Aggregation> aggregations)
+    {
+        CatalogName catalogName = table.getCatalogName();
+        ConnectorMetadata metadata = getMetadata(session, catalogName);
+
+        if (metadata.usesLegacyTableLayouts()) {
+            return Optional.empty();
+        }
+
+        ConnectorSession connectorSession = session.toConnectorSession(catalogName);
+        return metadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, groupingSets, aggregations)
+            .map(result -> new AggregationApplicationResult<>(
+                new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
+                result.isPartial(),
+                result.getGroupingSets(),
+                result.getAggregations()));
+    }
+
 
     //
     // Roles and Grants

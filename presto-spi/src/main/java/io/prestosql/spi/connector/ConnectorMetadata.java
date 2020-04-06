@@ -15,7 +15,10 @@ package io.prestosql.spi.connector;
 
 import io.airlift.slice.Slice;
 import io.prestosql.spi.PrestoException;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.expression.ConnectorExpression;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -794,6 +797,20 @@ public interface ConnectorMetadata
      * </pre>
      */
     default Optional<ProjectionApplicationResult<ConnectorTableHandle>> applyProjection(ConnectorSession session, ConnectorTableHandle handle, List<ConnectorExpression> projections, Map<String, ColumnHandle> assignments)
+    {
+        return Optional.empty();
+    }
+
+    /**
+     *
+     * @param session
+     * @param handle
+     * @param isPartial
+     * @param groupingSets
+     * @param aggregations
+     * @return
+     */
+    default Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle handle, boolean isPartial, GroupingSetDescriptor groupingSets, Map<Symbol, Aggregation> aggregations)
     {
         return Optional.empty();
     }

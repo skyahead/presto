@@ -14,33 +14,11 @@
 package io.prestosql.plugin.base.classloader;
 
 import io.airlift.slice.Slice;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.classloader.ThreadContextClassLoader;
-import io.prestosql.spi.connector.ColumnHandle;
-import io.prestosql.spi.connector.ColumnMetadata;
-import io.prestosql.spi.connector.ConnectorInsertTableHandle;
-import io.prestosql.spi.connector.ConnectorMetadata;
-import io.prestosql.spi.connector.ConnectorNewTableLayout;
-import io.prestosql.spi.connector.ConnectorOutputMetadata;
-import io.prestosql.spi.connector.ConnectorOutputTableHandle;
-import io.prestosql.spi.connector.ConnectorPartitioningHandle;
-import io.prestosql.spi.connector.ConnectorResolvedIndex;
-import io.prestosql.spi.connector.ConnectorSession;
-import io.prestosql.spi.connector.ConnectorTableHandle;
-import io.prestosql.spi.connector.ConnectorTableLayout;
-import io.prestosql.spi.connector.ConnectorTableLayoutHandle;
-import io.prestosql.spi.connector.ConnectorTableLayoutResult;
-import io.prestosql.spi.connector.ConnectorTableMetadata;
-import io.prestosql.spi.connector.ConnectorTableProperties;
-import io.prestosql.spi.connector.ConnectorViewDefinition;
-import io.prestosql.spi.connector.Constraint;
-import io.prestosql.spi.connector.ConstraintApplicationResult;
-import io.prestosql.spi.connector.LimitApplicationResult;
-import io.prestosql.spi.connector.ProjectionApplicationResult;
-import io.prestosql.spi.connector.SampleType;
-import io.prestosql.spi.connector.SchemaTableName;
-import io.prestosql.spi.connector.SchemaTablePrefix;
-import io.prestosql.spi.connector.SystemTable;
+import io.prestosql.spi.connector.*;
 import io.prestosql.spi.expression.ConnectorExpression;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -659,6 +637,14 @@ public class ClassLoaderSafeConnectorMetadata
     {
         try (ThreadContextClassLoader ignored = new ThreadContextClassLoader(classLoader)) {
             return delegate.applyProjection(session, table, projections, assignments);
+        }
+    }
+
+    @Override
+    public Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle table, boolean isPartial, AggregationNode.GroupingSetDescriptor groupingSets, Map<Symbol, AggregationNode.Aggregation> aggregations)
+    {
+        try (ThreadContextClassLoader ignored = new ThreadContextClassLoader(classLoader)) {
+            return delegate.applyAggregation(session, table, isPartial, groupingSets, aggregations);
         }
     }
 
