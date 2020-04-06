@@ -26,7 +26,7 @@ import io.prestosql.spi.type.RowType;
 import io.prestosql.spi.type.RowType.Field;
 import io.prestosql.spi.type.TimeZoneKey;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.relational.SpecialForm.Form;
 import io.prestosql.sql.relational.optimizer.ExpressionOptimizer;
 import io.prestosql.sql.tree.ArithmeticBinaryExpression;

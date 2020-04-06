@@ -42,11 +42,11 @@ import io.prestosql.spiller.SpillSpaceTracker;
 import io.prestosql.sql.planner.Partitioning;
 import io.prestosql.sql.planner.PartitioningScheme;
 import io.prestosql.sql.planner.PlanFragment;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.PlanFragmentId;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.testing.TestingMetadata.TestingColumnHandle;
 import org.joda.time.DateTime;
 

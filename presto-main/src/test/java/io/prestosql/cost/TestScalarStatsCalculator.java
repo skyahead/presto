@@ -21,7 +21,7 @@ import io.prestosql.sql.parser.ParsingOptions;
 import io.prestosql.sql.parser.SqlParser;
 import io.prestosql.sql.planner.FunctionCallBuilder;
 import io.prestosql.sql.planner.LiteralEncoder;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeAnalyzer;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.tree.Cast;

@@ -17,9 +17,9 @@ import com.google.common.base.Predicate;
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.connector.ColumnHandle;
-import io.prestosql.sql.planner.Symbol;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.TableScanNode;
 
 import java.util.Map;
 import java.util.Optional;

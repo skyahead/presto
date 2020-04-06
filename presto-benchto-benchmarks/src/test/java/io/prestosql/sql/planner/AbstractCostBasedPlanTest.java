@@ -25,7 +25,7 @@ import io.prestosql.sql.planner.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ExchangeNode;
 import io.prestosql.sql.planner.plan.JoinNode;
 import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.planner.plan.ValuesNode;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

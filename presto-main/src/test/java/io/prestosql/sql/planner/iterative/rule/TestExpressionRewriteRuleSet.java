@@ -18,7 +18,7 @@ import com.google.common.collect.ImmutableMap;
 import io.prestosql.spi.type.BigintType;
 import io.prestosql.spi.type.DateType;
 import io.prestosql.sql.planner.FunctionCallBuilder;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.assertions.PlanMatchPattern;
 import io.prestosql.sql.planner.iterative.rule.test.BaseRuleTest;
 import io.prestosql.sql.planner.iterative.rule.test.PlanBuilder;

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.block.SortOrder;
 import io.prestosql.sql.tree.OrderBy;
 import io.prestosql.sql.tree.SortItem;

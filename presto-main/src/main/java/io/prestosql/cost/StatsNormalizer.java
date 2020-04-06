@@ -22,7 +22,7 @@ import io.prestosql.spi.type.IntegerType;
 import io.prestosql.spi.type.SmallintType;
 import io.prestosql.spi.type.TinyintType;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeProvider;
 
 import java.util.Collection;

@@ -24,8 +24,9 @@ import io.prestosql.sql.planner.optimizations.StreamPropertyDerivations;
 import io.prestosql.sql.planner.optimizations.StreamPropertyDerivations.StreamProperties;
 import io.prestosql.sql.planner.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 import io.prestosql.sql.planner.sanity.PlanSanityChecker.Checker;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class ValidateAggregationsWithDefaultValues
     }
 
     private class Visitor
-            extends PlanVisitor<Optional<SeenExchanges>, Void>
+            extends InternalPlanVisitor<Optional<SeenExchanges>, Void>
     {
         final Session session;
         final Metadata metadata;

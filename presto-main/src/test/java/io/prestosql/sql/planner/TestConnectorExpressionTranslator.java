@@ -16,6 +16,7 @@ package io.prestosql.sql.planner;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.expression.FieldDereference;
 import io.prestosql.spi.expression.Variable;

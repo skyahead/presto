@@ -19,7 +19,7 @@ import io.prestosql.sql.planner.OptimizerStatsRecorder;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import static java.util.Objects.requireNonNull;
 

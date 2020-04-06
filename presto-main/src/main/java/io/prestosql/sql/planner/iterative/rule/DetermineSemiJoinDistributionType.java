@@ -39,7 +39,7 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.sql.analyzer.FeaturesConfig.JoinDistributionType;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.SemiJoinNode;
 
 import java.util.ArrayList;

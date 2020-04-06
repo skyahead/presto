@@ -16,7 +16,7 @@ package io.prestosql.testing;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.testing.Closeables;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.cost.StatsCalculator;
 import io.prestosql.metadata.AllNodes;
 import io.prestosql.metadata.InternalNode;

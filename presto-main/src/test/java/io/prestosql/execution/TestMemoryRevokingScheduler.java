@@ -35,7 +35,7 @@ import io.prestosql.spi.QueryId;
 import io.prestosql.spi.memory.MemoryPoolId;
 import io.prestosql.spiller.SpillSpaceTracker;
 import io.prestosql.sql.planner.LocalExecutionPlanner;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.TestingSession;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

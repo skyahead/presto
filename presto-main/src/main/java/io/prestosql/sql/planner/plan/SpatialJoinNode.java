@@ -17,7 +17,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.Expression;
 
 import javax.annotation.concurrent.Immutable;
@@ -31,7 +34,7 @@ import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class SpatialJoinNode
-        extends PlanNode
+        extends InternalPlanNode
 {
     public enum Type
     {
@@ -184,7 +187,7 @@ public class SpatialJoinNode
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitSpatialJoin(this, context);
     }

@@ -29,7 +29,7 @@ import io.prestosql.operator.ExchangeOperator.ExchangeOperatorFactory;
 import io.prestosql.spi.Page;
 import io.prestosql.spi.type.Type;
 import io.prestosql.split.RemoteSplit;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;

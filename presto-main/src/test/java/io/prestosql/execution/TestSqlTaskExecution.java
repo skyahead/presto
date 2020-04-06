@@ -24,7 +24,7 @@ import com.google.common.util.concurrent.SettableFuture;
 import io.airlift.stats.TestingGcMonitor;
 import io.airlift.units.DataSize;
 import io.airlift.units.Duration;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.buffer.BufferResult;
 import io.prestosql.execution.buffer.BufferState;
 import io.prestosql.execution.buffer.OutputBuffer;
@@ -58,7 +58,7 @@ import io.prestosql.spi.memory.MemoryPoolId;
 import io.prestosql.spi.type.Type;
 import io.prestosql.spiller.SpillSpaceTracker;
 import io.prestosql.sql.planner.LocalExecutionPlanner.LocalExecutionPlan;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

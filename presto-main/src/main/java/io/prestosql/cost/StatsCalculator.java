@@ -17,7 +17,7 @@ import io.prestosql.Session;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.IterativeOptimizer;
 import io.prestosql.sql.planner.iterative.Lookup;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 public interface StatsCalculator
 {

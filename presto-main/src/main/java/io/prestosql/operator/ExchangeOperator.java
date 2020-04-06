@@ -14,7 +14,7 @@
 package io.prestosql.operator;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.buffer.PagesSerde;
 import io.prestosql.execution.buffer.PagesSerdeFactory;
 import io.prestosql.execution.buffer.SerializedPage;
@@ -22,7 +22,7 @@ import io.prestosql.metadata.Split;
 import io.prestosql.spi.Page;
 import io.prestosql.spi.connector.UpdatablePageSource;
 import io.prestosql.split.RemoteSplit;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import java.io.Closeable;
 import java.net.URI;

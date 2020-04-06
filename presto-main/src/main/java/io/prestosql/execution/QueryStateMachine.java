@@ -43,7 +43,7 @@ import io.prestosql.spi.resourcegroups.ResourceGroupId;
 import io.prestosql.spi.security.SelectedRole;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.planner.PlanFragment;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.transaction.TransactionId;
 import io.prestosql.transaction.TransactionManager;
 import org.joda.time.DateTime;

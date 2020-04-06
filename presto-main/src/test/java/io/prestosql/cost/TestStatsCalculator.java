@@ -20,7 +20,7 @@ import io.prestosql.sql.planner.LogicalPlanner;
 import io.prestosql.sql.planner.Plan;
 import io.prestosql.sql.planner.assertions.PlanAssert;
 import io.prestosql.sql.planner.assertions.PlanMatchPattern;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.testing.LocalQueryRunner;
 import org.testng.annotations.Test;
 

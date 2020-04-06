@@ -29,7 +29,7 @@ import io.prestosql.execution.StageStats;
 import io.prestosql.execution.TableInfo;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.ResolvedFunction;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.operator.StageExecutionDescriptor;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.predicate.Domain;
@@ -46,56 +46,17 @@ import io.prestosql.sql.planner.Partitioning;
 import io.prestosql.sql.planner.PartitioningScheme;
 import io.prestosql.sql.planner.PlanFragment;
 import io.prestosql.sql.planner.SubPlan;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.GroupReference;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.sql.planner.plan.*;
 import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
-import io.prestosql.sql.planner.plan.ApplyNode;
-import io.prestosql.sql.planner.plan.AssignUniqueId;
-import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.CorrelatedJoinNode;
-import io.prestosql.sql.planner.plan.DeleteNode;
-import io.prestosql.sql.planner.plan.DistinctLimitNode;
-import io.prestosql.sql.planner.plan.EnforceSingleRowNode;
-import io.prestosql.sql.planner.plan.ExceptNode;
-import io.prestosql.sql.planner.plan.ExchangeNode;
 import io.prestosql.sql.planner.plan.ExchangeNode.Scope;
-import io.prestosql.sql.planner.plan.ExplainAnalyzeNode;
-import io.prestosql.sql.planner.plan.FilterNode;
-import io.prestosql.sql.planner.plan.GroupIdNode;
-import io.prestosql.sql.planner.plan.IndexJoinNode;
-import io.prestosql.sql.planner.plan.IndexSourceNode;
-import io.prestosql.sql.planner.plan.IntersectNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.MarkDistinctNode;
-import io.prestosql.sql.planner.plan.OffsetNode;
-import io.prestosql.sql.planner.plan.OutputNode;
-import io.prestosql.sql.planner.plan.PlanFragmentId;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.ProjectNode;
-import io.prestosql.sql.planner.plan.RemoteSourceNode;
-import io.prestosql.sql.planner.plan.RowNumberNode;
-import io.prestosql.sql.planner.plan.SampleNode;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SortNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.StatisticAggregations;
-import io.prestosql.sql.planner.plan.StatisticAggregationsDescriptor;
-import io.prestosql.sql.planner.plan.StatisticsWriterNode;
-import io.prestosql.sql.planner.plan.TableDeleteNode;
-import io.prestosql.sql.planner.plan.TableFinishNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
-import io.prestosql.sql.planner.plan.TableWriterNode;
-import io.prestosql.sql.planner.plan.TopNNode;
-import io.prestosql.sql.planner.plan.TopNRowNumberNode;
-import io.prestosql.sql.planner.plan.UnionNode;
-import io.prestosql.sql.planner.plan.UnnestNode;
-import io.prestosql.sql.planner.plan.ValuesNode;
-import io.prestosql.sql.planner.plan.WindowNode;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.planner.planprinter.NodeRepresentation.TypedSymbol;
 import io.prestosql.sql.tree.ComparisonExpression;
 import io.prestosql.sql.tree.Expression;
@@ -369,7 +330,7 @@ public class PlanPrinter
     }
 
     private class Visitor
-            extends PlanVisitor<Void, Void>
+            extends InternalPlanVisitor<Void, Void>
     {
         private final Optional<StageExecutionDescriptor> stageExecutionStrategy;
         private final TypeProvider types;

@@ -18,7 +18,7 @@ import com.google.common.collect.ImmutableMap;
 import io.prestosql.sql.planner.assertions.PlanMatchPattern;
 import io.prestosql.sql.planner.iterative.rule.test.BaseRuleTest;
 import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.FilterNode;
+import io.prestosql.spi.plan.FilterNode;
 import org.testng.annotations.Test;
 
 import static io.prestosql.spi.type.BooleanType.BOOLEAN;

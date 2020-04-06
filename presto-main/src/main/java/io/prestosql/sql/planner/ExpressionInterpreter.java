@@ -27,6 +27,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.ResolvedFunction;
 import io.prestosql.operator.scalar.ArraySubscriptOperator;
 import io.prestosql.spi.PrestoException;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.block.BlockBuilder;
 import io.prestosql.spi.block.RowBlockBuilder;

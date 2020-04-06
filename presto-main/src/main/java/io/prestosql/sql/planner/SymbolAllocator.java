@@ -16,6 +16,7 @@ package io.prestosql.sql.planner;
 import com.google.common.primitives.Ints;
 import io.prestosql.metadata.ResolvedFunction;
 import io.prestosql.metadata.Signature;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.type.BigintType;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.analyzer.Field;

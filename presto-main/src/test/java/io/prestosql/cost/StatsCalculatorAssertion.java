@@ -18,8 +18,8 @@ import io.prestosql.cost.ComposableStatsCalculator.Rule;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.Lookup;
 import io.prestosql.sql.planner.optimizations.PlanNodeSearcher;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -15,7 +15,7 @@ package io.prestosql.testing;
 
 import io.prestosql.GroupByHashPageIndexerFactory;
 import io.prestosql.PagesIndexPageSorter;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.connector.ConnectorAwareNodeManager;
 import io.prestosql.metadata.InMemoryNodeManager;
 import io.prestosql.metadata.Metadata;

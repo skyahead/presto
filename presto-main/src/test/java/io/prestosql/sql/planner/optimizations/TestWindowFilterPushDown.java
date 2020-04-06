@@ -15,7 +15,7 @@ package io.prestosql.sql.planner.optimizations;
 
 import io.prestosql.Session;
 import io.prestosql.sql.planner.assertions.BasePlanTest;
-import io.prestosql.sql.planner.plan.FilterNode;
+import io.prestosql.spi.plan.FilterNode;
 import io.prestosql.sql.planner.plan.TopNRowNumberNode;
 import io.prestosql.sql.planner.plan.WindowNode;
 import org.intellij.lang.annotations.Language;

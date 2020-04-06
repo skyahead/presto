@@ -15,7 +15,10 @@ package io.prestosql.sql.planner.plan;
 
 import io.prestosql.matching.Pattern;
 import io.prestosql.matching.Property;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.TableScanNode;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.Lookup;
 import io.prestosql.sql.tree.Expression;
 

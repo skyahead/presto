@@ -19,7 +19,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import io.prestosql.cost.PlanNodeStatsAndCostSummary;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.ComparisonExpression;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.Join;
@@ -47,7 +49,7 @@ import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class JoinNode
-        extends PlanNode
+        extends InternalPlanNode
 {
     private final Type type;
     private final PlanNode left;
@@ -322,7 +324,7 @@ public class JoinNode
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitJoin(this, context);
     }
@@ -359,6 +361,11 @@ public class JoinNode
         private final Symbol left;
         private final Symbol right;
 
+        public ComparisonExpression toExpression()
+        {
+            return new ComparisonExpression(ComparisonExpression.Operator.EQUAL, left.toSymbolReference(), right.toSymbolReference());
+        }
+
         @JsonCreator
         public EquiJoinClause(@JsonProperty("left") Symbol left, @JsonProperty("right") Symbol right)
         {
@@ -376,11 +383,6 @@ public class JoinNode
         public Symbol getRight()
         {
             return right;
-        }
-
-        public ComparisonExpression toExpression()
-        {
-            return new ComparisonExpression(ComparisonExpression.Operator.EQUAL, left.toSymbolReference(), right.toSymbolReference());
         }
 
         public EquiJoinClause flip()

@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import io.prestosql.operator.OperatorFactory;
 import io.prestosql.operator.TopNOperator;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.LocalQueryRunner;
 
 import java.util.List;

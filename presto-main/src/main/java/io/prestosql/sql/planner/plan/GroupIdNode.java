@@ -20,7 +20,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
+import io.prestosql.spi.Symbol;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -38,7 +41,7 @@ import static java.util.stream.Collectors.toSet;
 
 @Immutable
 public class GroupIdNode
-        extends PlanNode
+        extends InternalPlanNode
 {
     private final PlanNode source;
 
@@ -119,7 +122,7 @@ public class GroupIdNode
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitGroupId(this, context);
     }

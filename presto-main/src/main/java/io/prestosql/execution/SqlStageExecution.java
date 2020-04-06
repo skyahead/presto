@@ -31,7 +31,7 @@ import io.prestosql.spi.PrestoException;
 import io.prestosql.split.RemoteSplit;
 import io.prestosql.sql.planner.PlanFragment;
 import io.prestosql.sql.planner.plan.PlanFragmentId;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.planner.plan.RemoteSourceNode;
 
 import javax.annotation.concurrent.GuardedBy;

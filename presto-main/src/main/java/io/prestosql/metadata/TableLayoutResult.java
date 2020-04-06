@@ -14,6 +14,7 @@
 package io.prestosql.metadata;
 
 import com.google.common.collect.ImmutableMap;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.TupleDomain;

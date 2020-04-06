@@ -13,11 +13,12 @@
  */
 package io.prestosql.sql.planner;
 
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.Output;
 import io.prestosql.spi.connector.SchemaTableName;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 import io.prestosql.sql.planner.plan.TableWriterNode;
 import io.prestosql.sql.planner.plan.TableWriterNode.CreateTarget;
 import io.prestosql.sql.planner.plan.TableWriterNode.DeleteTarget;
@@ -46,7 +47,7 @@ public class OutputExtractor
     }
 
     private static class Visitor
-            extends PlanVisitor<Void, Void>
+            extends InternalPlanVisitor<Void, Void>
     {
         private CatalogName catalogName;
         private SchemaTableName schemaTableName;

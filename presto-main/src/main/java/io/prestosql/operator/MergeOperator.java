@@ -25,7 +25,7 @@ import io.prestosql.spi.connector.UpdatablePageSource;
 import io.prestosql.spi.type.Type;
 import io.prestosql.split.RemoteSplit;
 import io.prestosql.sql.gen.OrderingCompiler;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import java.io.Closeable;
 import java.io.IOException;

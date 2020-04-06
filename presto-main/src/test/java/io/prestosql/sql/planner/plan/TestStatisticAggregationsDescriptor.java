@@ -18,7 +18,7 @@ import com.google.common.reflect.TypeToken;
 import io.airlift.json.JsonCodec;
 import io.prestosql.spi.statistics.ColumnStatisticMetadata;
 import io.prestosql.spi.statistics.ColumnStatisticType;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import org.testng.annotations.Test;
 

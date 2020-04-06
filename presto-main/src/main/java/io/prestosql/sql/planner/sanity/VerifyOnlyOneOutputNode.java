@@ -19,7 +19,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.TypeAnalyzer;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.plan.OutputNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import static com.google.common.base.Preconditions.checkState;
 import static io.prestosql.sql.planner.optimizations.PlanNodeSearcher.searchFrom;

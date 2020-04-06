@@ -20,16 +20,8 @@ import com.google.common.collect.Ordering;
 import io.prestosql.execution.SqlStageExecution;
 import io.prestosql.execution.StageState;
 import io.prestosql.sql.planner.PlanFragment;
-import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.IndexJoinNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.PlanFragmentId;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.RemoteSourceNode;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.UnionNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.PlanNode;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -107,7 +99,7 @@ public class AllAtOnceExecutionSchedule
     }
 
     private static class Visitor
-            extends PlanVisitor<Void, Void>
+            extends InternalPlanVisitor<Void, Void>
     {
         private final Map<PlanFragmentId, PlanFragment> fragments;
         private final ImmutableSet.Builder<PlanFragmentId> schedulerOrder = ImmutableSet.builder();

@@ -16,7 +16,7 @@ package io.prestosql.plugin.redis;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.Session;
 import io.prestosql.metadata.QualifiedObjectName;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.plugin.redis.util.JsonEncoder;
 import io.prestosql.plugin.redis.util.RedisServer;
 import io.prestosql.security.AllowAllAccessControl;

@@ -13,6 +13,8 @@
  */
 package io.prestosql.sql.planner;
 
+import io.prestosql.spi.Symbol;
+
 public class NoOpSymbolResolver
         implements SymbolResolver
 {

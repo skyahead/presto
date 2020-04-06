@@ -22,7 +22,7 @@ import io.airlift.stats.Distribution;
 import io.airlift.stats.Distribution.DistributionSnapshot;
 import io.prestosql.SessionRepresentation;
 import io.prestosql.client.NodeVersion;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.cost.StatsAndCosts;
 import io.prestosql.eventlistener.EventListenerManager;
 import io.prestosql.execution.Column;

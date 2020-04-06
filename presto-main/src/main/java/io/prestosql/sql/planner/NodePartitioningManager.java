@@ -16,7 +16,7 @@ package io.prestosql.sql.planner;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.scheduler.BucketNodeMap;
 import io.prestosql.execution.scheduler.FixedBucketNodeMap;
 import io.prestosql.execution.scheduler.NodeScheduler;

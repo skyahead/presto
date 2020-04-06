@@ -20,7 +20,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.OrderingScheme;
 import io.prestosql.sql.planner.assertions.PlanMatchPattern.Ordering;
 import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import java.util.List;
 

@@ -22,9 +22,12 @@ import com.google.common.collect.Iterables;
 import io.prestosql.metadata.AggregationFunctionMetadata;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
 import io.prestosql.spi.type.TypeSignature;
 import io.prestosql.sql.planner.OrderingScheme;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.LambdaExpression;
 import io.prestosql.sql.tree.SymbolReference;
@@ -45,7 +48,7 @@ import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class AggregationNode
-        extends PlanNode
+        extends InternalPlanNode
 {
     private final PlanNode source;
     private final Map<Symbol, Aggregation> aggregations;
@@ -199,7 +202,7 @@ public class AggregationNode
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitAggregation(this, context);
     }

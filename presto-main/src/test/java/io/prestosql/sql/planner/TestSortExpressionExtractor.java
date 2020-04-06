@@ -16,6 +16,7 @@ package io.prestosql.sql.planner;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import io.prestosql.metadata.Metadata;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.ExpressionTestUtils;
 import io.prestosql.sql.parser.ParsingOptions;

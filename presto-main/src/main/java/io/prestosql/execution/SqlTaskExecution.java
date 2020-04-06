@@ -38,7 +38,7 @@ import io.prestosql.operator.PipelineExecutionStrategy;
 import io.prestosql.operator.StageExecutionDescriptor;
 import io.prestosql.operator.TaskContext;
 import io.prestosql.sql.planner.LocalExecutionPlanner.LocalExecutionPlan;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;

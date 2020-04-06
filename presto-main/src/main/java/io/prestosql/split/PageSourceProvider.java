@@ -15,7 +15,7 @@ package io.prestosql.split;
 
 import io.prestosql.Session;
 import io.prestosql.metadata.Split;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ConnectorPageSource;
 import io.prestosql.spi.predicate.TupleDomain;

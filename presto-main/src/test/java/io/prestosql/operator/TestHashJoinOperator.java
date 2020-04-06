@@ -43,7 +43,7 @@ import io.prestosql.spiller.PartitioningSpillerFactory;
 import io.prestosql.spiller.SingleStreamSpiller;
 import io.prestosql.spiller.SingleStreamSpillerFactory;
 import io.prestosql.sql.gen.JoinFilterFunctionCompiler.JoinFilterFunctionFactory;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.MaterializedResult;
 import io.prestosql.testing.TestingTaskContext;
 import org.testng.annotations.AfterMethod;

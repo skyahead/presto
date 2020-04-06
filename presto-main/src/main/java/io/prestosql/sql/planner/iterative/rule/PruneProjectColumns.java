@@ -14,8 +14,8 @@
 package io.prestosql.sql.planner.iterative.rule;
 
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
-import io.prestosql.sql.planner.Symbol;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.ProjectNode;
 
 import java.util.Optional;

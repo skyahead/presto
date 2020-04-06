@@ -20,7 +20,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.TableMetadata;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.sql.planner.plan.IndexSourceNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import java.util.Map;
 import java.util.Optional;

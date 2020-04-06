@@ -21,7 +21,7 @@ import io.prestosql.memory.context.AggregatedMemoryContext;
 import io.prestosql.memory.context.LocalMemoryContext;
 import io.prestosql.memory.context.MemoryTrackingContext;
 import io.prestosql.metadata.Split;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.operator.WorkProcessor.ProcessState;
 import io.prestosql.operator.WorkProcessor.TransformationState;
 import io.prestosql.operator.WorkProcessorSourceOperatorAdapter.AdapterWorkProcessorSourceOperatorFactory;
@@ -40,7 +40,7 @@ import io.prestosql.spi.type.Type;
 import io.prestosql.split.EmptySplit;
 import io.prestosql.split.EmptySplitPageSource;
 import io.prestosql.split.PageSourceProvider;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import javax.annotation.Nullable;
 

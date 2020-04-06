@@ -24,7 +24,7 @@ import io.prestosql.operator.OperatorContext;
 import io.prestosql.operator.TaskContext;
 import io.prestosql.spi.QueryId;
 import io.prestosql.spiller.SpillSpaceTracker;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.LocalQueryRunner;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;

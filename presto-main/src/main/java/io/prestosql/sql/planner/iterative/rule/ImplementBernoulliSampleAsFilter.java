@@ -18,7 +18,7 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.FunctionCallBuilder;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.plan.FilterNode;
+import io.prestosql.spi.plan.FilterNode;
 import io.prestosql.sql.planner.plan.SampleNode;
 import io.prestosql.sql.tree.ComparisonExpression;
 import io.prestosql.sql.tree.DoubleLiteral;

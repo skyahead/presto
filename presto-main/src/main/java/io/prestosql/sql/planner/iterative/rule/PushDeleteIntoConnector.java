@@ -20,7 +20,7 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.iterative.Rule;
 import io.prestosql.sql.planner.plan.TableDeleteNode;
 import io.prestosql.sql.planner.plan.TableFinishNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.TableScanNode;
 
 import static com.google.common.collect.Iterables.getOnlyElement;
 import static io.prestosql.matching.Capture.newCapture;

@@ -13,6 +13,7 @@
  */
 package io.prestosql.metadata;
 
+import io.prestosql.spi.TableHandle;
 import io.prestosql.spi.statistics.TableStatisticsMetadata;
 
 import static java.util.Objects.requireNonNull;

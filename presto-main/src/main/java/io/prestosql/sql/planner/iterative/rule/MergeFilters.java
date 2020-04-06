@@ -18,7 +18,7 @@ import io.prestosql.matching.Captures;
 import io.prestosql.matching.Pattern;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.plan.FilterNode;
+import io.prestosql.spi.plan.FilterNode;
 
 import static io.prestosql.matching.Capture.newCapture;
 import static io.prestosql.sql.ExpressionUtils.combineConjuncts;

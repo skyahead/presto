@@ -14,7 +14,7 @@
 package io.prestosql.connector.system;
 
 import com.google.common.collect.ImmutableList;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.block.BlockBuilder;

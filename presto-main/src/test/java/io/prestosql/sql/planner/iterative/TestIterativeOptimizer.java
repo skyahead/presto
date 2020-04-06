@@ -25,7 +25,7 @@ import io.prestosql.spi.PrestoException;
 import io.prestosql.sql.planner.RuleStatsRecorder;
 import io.prestosql.sql.planner.optimizations.PlanOptimizer;
 import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.ProjectNode;
 import io.prestosql.testing.LocalQueryRunner;
 import org.testng.annotations.AfterClass;

@@ -30,7 +30,7 @@ import io.prestosql.spi.connector.ConnectorPartitionHandle;
 import io.prestosql.split.EmptySplit;
 import io.prestosql.split.SplitSource;
 import io.prestosql.split.SplitSource.SplitBatch;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import java.util.ArrayList;
 import java.util.HashMap;

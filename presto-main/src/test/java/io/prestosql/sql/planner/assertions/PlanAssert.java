@@ -21,7 +21,7 @@ import io.prestosql.cost.StatsProvider;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.Plan;
 import io.prestosql.sql.planner.iterative.Lookup;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import static io.prestosql.sql.planner.iterative.Lookup.noLookup;
 import static io.prestosql.sql.planner.iterative.Plans.resolveGroupReferences;

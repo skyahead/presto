@@ -25,7 +25,7 @@ import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.predicate.ValueSet;
 import io.prestosql.spi.type.Type;
 import io.prestosql.spi.type.TypeUtils;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import javax.annotation.Nullable;
 

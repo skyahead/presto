@@ -33,31 +33,13 @@ import io.prestosql.sql.planner.FunctionCallBuilder;
 import io.prestosql.sql.planner.Partitioning.ArgumentBinding;
 import io.prestosql.sql.planner.PartitioningScheme;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.ApplyNode;
-import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.CorrelatedJoinNode;
-import io.prestosql.sql.planner.plan.DistinctLimitNode;
-import io.prestosql.sql.planner.plan.EnforceSingleRowNode;
-import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.GroupIdNode;
-import io.prestosql.sql.planner.plan.IndexJoinNode;
+import io.prestosql.sql.planner.plan.*;
 import io.prestosql.sql.planner.plan.IndexJoinNode.EquiJoinClause;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.MarkDistinctNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.ProjectNode;
-import io.prestosql.sql.planner.plan.RowNumberNode;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.TopNRowNumberNode;
-import io.prestosql.sql.planner.plan.UnionNode;
-import io.prestosql.sql.planner.plan.UnnestNode;
-import io.prestosql.sql.planner.plan.WindowNode;
+import io.prestosql.spi.plan.PlanNode;
+
 import io.prestosql.sql.tree.CoalesceExpression;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.FunctionCall;
@@ -122,7 +104,7 @@ public class HashGenerationOptimizer
     }
 
     private static class Rewriter
-            extends PlanVisitor<PlanWithProperties, HashComputationSet>
+            extends InternalPlanVisitor<PlanWithProperties, HashComputationSet>
     {
         private final Metadata metadata;
         private final PlanNodeIdAllocator idAllocator;

@@ -13,9 +13,9 @@
  */
 package io.prestosql.cost;
 
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import org.testng.annotations.Test;
 
 import java.util.Optional;

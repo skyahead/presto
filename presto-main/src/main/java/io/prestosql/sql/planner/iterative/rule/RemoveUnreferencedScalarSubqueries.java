@@ -18,7 +18,7 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.sql.planner.iterative.Lookup;
 import io.prestosql.sql.planner.iterative.Rule;
 import io.prestosql.sql.planner.plan.CorrelatedJoinNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import static io.prestosql.sql.planner.optimizations.QueryCardinalityUtil.isAtLeastScalar;
 import static io.prestosql.sql.planner.optimizations.QueryCardinalityUtil.isScalar;

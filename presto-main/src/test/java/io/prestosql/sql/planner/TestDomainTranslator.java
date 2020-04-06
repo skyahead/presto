@@ -19,6 +19,7 @@ import com.google.common.io.BaseEncoding;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
 import io.prestosql.metadata.Metadata;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.Range;
 import io.prestosql.spi.predicate.TupleDomain;

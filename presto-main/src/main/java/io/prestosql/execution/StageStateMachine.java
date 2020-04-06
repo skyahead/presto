@@ -27,8 +27,8 @@ import io.prestosql.operator.PipelineStats;
 import io.prestosql.operator.TaskStats;
 import io.prestosql.spi.eventlistener.StageGcStatistics;
 import io.prestosql.sql.planner.PlanFragment;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.util.Failures;
 import org.joda.time.DateTime;
 

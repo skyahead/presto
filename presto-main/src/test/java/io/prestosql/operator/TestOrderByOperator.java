@@ -19,7 +19,7 @@ import io.prestosql.ExceededMemoryLimitException;
 import io.prestosql.operator.OrderByOperator.OrderByOperatorFactory;
 import io.prestosql.spi.Page;
 import io.prestosql.sql.gen.OrderingCompiler;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.MaterializedResult;
 import io.prestosql.testing.TestingTaskContext;
 import org.testng.annotations.AfterMethod;

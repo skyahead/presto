@@ -13,7 +13,7 @@
  */
 package io.prestosql.execution.scheduler;
 
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 
 import java.util.Optional;
 

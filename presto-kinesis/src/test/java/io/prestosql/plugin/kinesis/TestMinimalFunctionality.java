@@ -18,7 +18,7 @@ import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 import io.prestosql.Session;
 import io.prestosql.metadata.QualifiedObjectName;
 import io.prestosql.metadata.SessionPropertyManager;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.plugin.kinesis.util.EmbeddedKinesisStream;
 import io.prestosql.plugin.kinesis.util.TestUtils;
 import io.prestosql.security.AllowAllAccessControl;

@@ -20,7 +20,7 @@ import io.prestosql.operator.OperatorFactory;
 import io.prestosql.operator.project.PageProcessor;
 import io.prestosql.sql.gen.ExpressionCompiler;
 import io.prestosql.sql.gen.PageFunctionCompiler;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.relational.RowExpression;
 import io.prestosql.testing.LocalQueryRunner;
 

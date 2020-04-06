@@ -16,7 +16,7 @@ package io.prestosql;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableMap;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.metadata.SessionPropertyManager;
 import io.prestosql.spi.QueryId;
 import io.prestosql.spi.security.BasicPrincipal;

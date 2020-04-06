@@ -26,7 +26,7 @@ import io.prestosql.spi.block.Block;
 import io.prestosql.spi.connector.ConnectorOutputMetadata;
 import io.prestosql.spi.statistics.ComputedStatistics;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.planner.plan.StatisticAggregationsDescriptor;
 
 import java.util.Collection;

@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.spi.type.BigintType;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.tree.BindExpression;
 import io.prestosql.sql.tree.Identifier;

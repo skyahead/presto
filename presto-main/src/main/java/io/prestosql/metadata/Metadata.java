@@ -15,7 +15,8 @@ package io.prestosql.metadata;
 
 import io.airlift.slice.Slice;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.TableHandle;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.operator.aggregation.InternalAggregationFunction;
 import io.prestosql.operator.scalar.ScalarFunctionImplementation;
 import io.prestosql.operator.window.WindowFunctionSupplier;

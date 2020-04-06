@@ -17,8 +17,8 @@ package io.prestosql.sql.planner.assertions;
 import io.prestosql.Session;
 import io.prestosql.cost.StatsProvider;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.sql.planner.Symbol;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.TableWriterNode;
 
 import java.util.List;

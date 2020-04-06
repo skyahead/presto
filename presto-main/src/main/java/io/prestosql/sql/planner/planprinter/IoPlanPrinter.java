@@ -21,7 +21,7 @@ import io.prestosql.cost.PlanCostEstimate;
 import io.prestosql.cost.PlanNodeStatsEstimate;
 import io.prestosql.cost.StatsAndCosts;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.metadata.TableMetadata;
 import io.prestosql.spi.connector.CatalogSchemaTableName;
 import io.prestosql.spi.connector.ColumnHandle;
@@ -32,10 +32,11 @@ import io.prestosql.spi.predicate.Marker.Bound;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.planner.Plan;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 import io.prestosql.sql.planner.plan.TableFinishNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.planner.plan.TableWriterNode.CreateReference;
 import io.prestosql.sql.planner.plan.TableWriterNode.CreateTarget;
 import io.prestosql.sql.planner.plan.TableWriterNode.DeleteTarget;
@@ -591,7 +592,7 @@ public class IoPlanPrinter
     }
 
     private class IoPlanVisitor
-            extends PlanVisitor<Void, IoPlanBuilder>
+            extends InternalPlanVisitor<Void, IoPlanBuilder>
     {
         @Override
         protected Void visitPlan(PlanNode node, IoPlanBuilder context)

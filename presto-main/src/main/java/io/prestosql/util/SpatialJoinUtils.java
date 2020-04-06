@@ -15,8 +15,8 @@ package io.prestosql.util;
 
 import io.prestosql.metadata.ResolvedFunction;
 import io.prestosql.metadata.Signature;
-import io.prestosql.sql.planner.Symbol;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.tree.ComparisonExpression;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.FunctionCall;

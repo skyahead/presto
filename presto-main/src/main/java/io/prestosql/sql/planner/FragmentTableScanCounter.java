@@ -14,9 +14,10 @@
 package io.prestosql.sql.planner;
 
 import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.spi.plan.TableScanNode;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public final class FragmentTableScanCounter
     }
 
     private static class Visitor
-            extends PlanVisitor<Integer, Void>
+            extends InternalPlanVisitor<Integer, Void>
     {
         @Override
         public Integer visitTableScan(TableScanNode node, Void context)

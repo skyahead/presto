@@ -15,7 +15,7 @@ package io.prestosql.sql.planner.optimizations;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.sql.planner.iterative.Lookup;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import java.util.List;
 import java.util.Optional;

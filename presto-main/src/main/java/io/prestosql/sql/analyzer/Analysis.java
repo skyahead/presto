@@ -23,7 +23,7 @@ import com.google.common.collect.Multiset;
 import io.prestosql.metadata.NewTableLayout;
 import io.prestosql.metadata.QualifiedObjectName;
 import io.prestosql.metadata.ResolvedFunction;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.security.AccessControl;
 import io.prestosql.security.SecurityContext;
 import io.prestosql.spi.connector.ColumnHandle;

@@ -18,14 +18,15 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.iterative.GroupReference;
 import io.prestosql.sql.planner.iterative.Lookup;
-import io.prestosql.sql.planner.plan.FilterNode;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.PlanVisitor;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
 import io.prestosql.sql.planner.plan.ProjectNode;
 import io.prestosql.sql.tree.Expression;
 
@@ -190,7 +191,7 @@ public class JoinGraph
     }
 
     private static class Builder
-            extends PlanVisitor<JoinGraph, Context>
+            extends InternalPlanVisitor<JoinGraph, Context>
     {
         private final Metadata metadata;
         private final Lookup lookup;

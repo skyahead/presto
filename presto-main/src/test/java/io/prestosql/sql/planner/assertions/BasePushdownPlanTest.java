@@ -15,7 +15,7 @@ package io.prestosql.sql.planner.assertions;
 
 import io.prestosql.Session;
 import io.prestosql.metadata.QualifiedObjectName;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.spi.connector.ColumnHandle;
 
 import java.util.Map;

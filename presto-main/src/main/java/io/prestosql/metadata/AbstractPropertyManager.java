@@ -16,7 +16,7 @@ package io.prestosql.metadata;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.spi.ErrorCodeSupplier;
 import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.block.BlockBuilder;

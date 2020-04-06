@@ -15,7 +15,7 @@ package io.prestosql.security;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.connector.informationschema.InformationSchemaConnector;
 import io.prestosql.connector.system.SystemConnector;
 import io.prestosql.metadata.Catalog;
@@ -55,8 +55,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import static io.prestosql.connector.CatalogName.createInformationSchemaCatalogName;
-import static io.prestosql.connector.CatalogName.createSystemTablesCatalogName;
+import static io.prestosql.spi.connector.CatalogName.createInformationSchemaCatalogName;
+import static io.prestosql.spi.connector.CatalogName.createSystemTablesCatalogName;
 import static io.prestosql.metadata.MetadataManager.createTestMetadataManager;
 import static io.prestosql.spi.security.AccessDeniedException.denySelectColumns;
 import static io.prestosql.spi.security.AccessDeniedException.denySelectTable;

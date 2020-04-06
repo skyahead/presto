@@ -20,15 +20,16 @@ import io.prestosql.execution.warnings.WarningCollector;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.DynamicFilters;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.optimizations.PlanOptimizer;
-import io.prestosql.sql.planner.plan.FilterNode;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.ExpressionRewriter;
 import io.prestosql.sql.tree.ExpressionTreeRewriter;
@@ -76,7 +77,7 @@ public class RemoveUnsupportedDynamicFilters
     }
 
     private class Rewriter
-            extends PlanVisitor<PlanWithConsumedDynamicFilters, Set<String>>
+            extends InternalPlanVisitor<PlanWithConsumedDynamicFilters, Set<String>>
     {
         @Override
         protected PlanWithConsumedDynamicFilters visitPlan(PlanNode node, Set<String> allowedDynamicFilterIds)

@@ -24,7 +24,7 @@ import io.prestosql.memory.MemoryPool;
 import io.prestosql.memory.QueryContext;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.QualifiedObjectName;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.operator.Driver;
 import io.prestosql.operator.TaskContext;
 import io.prestosql.plugin.memory.MemoryConnectorFactory;

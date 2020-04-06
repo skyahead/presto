@@ -20,6 +20,7 @@ import io.prestosql.metadata.ResolvedFunction;
 import io.prestosql.operator.aggregation.MaxDataSizeForStats;
 import io.prestosql.operator.aggregation.SumDataSizeForStats;
 import io.prestosql.spi.PrestoException;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.statistics.ColumnStatisticMetadata;
 import io.prestosql.spi.statistics.ColumnStatisticType;
 import io.prestosql.spi.statistics.TableStatisticType;

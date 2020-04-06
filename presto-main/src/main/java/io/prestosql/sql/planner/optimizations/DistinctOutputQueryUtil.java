@@ -13,18 +13,9 @@
  */
 package io.prestosql.sql.planner.optimizations;
 
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AssignUniqueId;
-import io.prestosql.sql.planner.plan.DistinctLimitNode;
-import io.prestosql.sql.planner.plan.EnforceSingleRowNode;
-import io.prestosql.sql.planner.plan.ExceptNode;
-import io.prestosql.sql.planner.plan.FilterNode;
-import io.prestosql.sql.planner.plan.IntersectNode;
-import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.TopNNode;
-import io.prestosql.sql.planner.plan.ValuesNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import java.util.function.Function;
 
@@ -45,7 +36,7 @@ public final class DistinctOutputQueryUtil
     }
 
     private static final class IsDistinctPlanVisitor
-            extends PlanVisitor<Boolean, Void>
+            extends InternalPlanVisitor<Boolean, Void>
     {
         /*
         With the iterative optimizer, plan nodes are replaced with

@@ -16,26 +16,14 @@ package io.prestosql.cost;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.Session;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.GroupReference;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AssignUniqueId;
-import io.prestosql.sql.planner.plan.EnforceSingleRowNode;
-import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.FilterNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.OutputNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.ProjectNode;
-import io.prestosql.sql.planner.plan.RowNumberNode;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
-import io.prestosql.sql.planner.plan.UnionNode;
-import io.prestosql.sql.planner.plan.ValuesNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.spi.plan.TableScanNode;
 
 import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Inject;
@@ -81,7 +69,7 @@ public class CostCalculatorUsingExchanges
     }
 
     private static class CostEstimator
-            extends PlanVisitor<PlanCostEstimate, Void>
+            extends InternalPlanVisitor<PlanCostEstimate, Void>
     {
         private final StatsProvider stats;
         private final CostProvider sourcesCosts;

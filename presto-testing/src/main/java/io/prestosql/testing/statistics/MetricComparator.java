@@ -19,7 +19,7 @@ import io.prestosql.Session;
 import io.prestosql.cost.PlanNodeStatsEstimate;
 import io.prestosql.execution.warnings.WarningCollector;
 import io.prestosql.sql.planner.Plan;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.OutputNode;
 import io.prestosql.testing.MaterializedRow;
 import io.prestosql.testing.QueryRunner;

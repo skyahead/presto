@@ -30,7 +30,7 @@ import io.prestosql.spi.block.Block;
 import io.prestosql.spi.connector.ConnectorSession;
 import io.prestosql.sql.gen.PageFunctionCompiler;
 import io.prestosql.sql.planner.plan.AggregationNode.Step;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.tree.QualifiedName;
 import io.prestosql.testing.LocalQueryRunner;
 import io.prestosql.util.DateTimeUtils;

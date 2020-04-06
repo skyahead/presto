@@ -20,7 +20,7 @@ import io.prestosql.operator.DriverFactory;
 import io.prestosql.operator.OperatorFactory;
 import io.prestosql.operator.TaskContext;
 import io.prestosql.sql.gen.JoinCompiler;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.LocalQueryRunner;
 import io.prestosql.testing.NullOutputOperator.NullOutputOperatorFactory;
 

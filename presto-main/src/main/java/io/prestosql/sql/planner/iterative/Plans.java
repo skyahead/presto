@@ -13,8 +13,9 @@
  */
 package io.prestosql.sql.planner.iterative;
 
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public final class Plans
     }
 
     private static class ResolvingVisitor
-            extends PlanVisitor<PlanNode, Void>
+            extends InternalPlanVisitor<PlanNode, Void>
     {
         private final Lookup lookup;
 

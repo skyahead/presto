@@ -16,14 +16,14 @@ package io.prestosql.execution;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.metadata.AbstractMockMetadata;
 import io.prestosql.metadata.Catalog;
 import io.prestosql.metadata.CatalogManager;
 import io.prestosql.metadata.ColumnPropertyManager;
 import io.prestosql.metadata.MetadataManager;
 import io.prestosql.metadata.QualifiedObjectName;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.metadata.TablePropertyManager;
 import io.prestosql.security.AllowAllAccessControl;
 import io.prestosql.spi.PrestoException;

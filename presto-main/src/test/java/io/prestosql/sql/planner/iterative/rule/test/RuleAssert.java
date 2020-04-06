@@ -37,8 +37,8 @@ import io.prestosql.sql.planner.assertions.PlanMatchPattern;
 import io.prestosql.sql.planner.iterative.Lookup;
 import io.prestosql.sql.planner.iterative.Memo;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.transaction.TransactionManager;
 
 import java.util.HashMap;

@@ -18,7 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.JoinNode.Type;
 import io.prestosql.sql.tree.Expression;
 
@@ -33,7 +36,7 @@ import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class UnnestNode
-        extends PlanNode
+        extends InternalPlanNode
 {
     private final PlanNode source;
     private final List<Symbol> replicateSymbols;
@@ -121,7 +124,7 @@ public class UnnestNode
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitUnnest(this, context);
     }

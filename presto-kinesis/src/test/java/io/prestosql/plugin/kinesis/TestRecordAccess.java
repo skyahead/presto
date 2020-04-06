@@ -18,7 +18,7 @@ import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 import io.airlift.log.Logger;
 import io.prestosql.Session;
 import io.prestosql.metadata.QualifiedObjectName;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.plugin.kinesis.util.MockKinesisClient;
 import io.prestosql.plugin.kinesis.util.TestUtils;
 import io.prestosql.security.AllowAllAccessControl;

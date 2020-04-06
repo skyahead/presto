@@ -19,14 +19,15 @@ import io.prestosql.Session;
 import io.prestosql.execution.Column;
 import io.prestosql.execution.Input;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ColumnMetadata;
 import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.sql.planner.plan.IndexSourceNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.spi.plan.TableScanNode;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
 
 import java.util.HashSet;
 import java.util.List;
@@ -65,7 +66,7 @@ public class InputExtractor
     }
 
     private class Visitor
-            extends PlanVisitor<Void, Void>
+            extends InternalPlanVisitor<Void, Void>
     {
         private final ImmutableSet.Builder<Input> inputs = ImmutableSet.builder();
 

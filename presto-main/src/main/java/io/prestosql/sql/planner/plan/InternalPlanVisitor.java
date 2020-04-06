@@ -13,9 +13,15 @@
  */
 package io.prestosql.sql.planner.plan;
 
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanVisitor;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.planner.iterative.GroupReference;
 
-public abstract class PlanVisitor<R, C>
+public abstract class InternalPlanVisitor<R, C>
+        extends PlanVisitor<R, C>
 {
     protected abstract R visitPlan(PlanNode node, C context);
 

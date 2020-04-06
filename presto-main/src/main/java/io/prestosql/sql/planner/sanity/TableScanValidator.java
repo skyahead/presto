@@ -19,8 +19,8 @@ import io.prestosql.metadata.Metadata;
 import io.prestosql.sql.planner.SimplePlanVisitor;
 import io.prestosql.sql.planner.TypeAnalyzer;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.TableScanNode;
 
 public class TableScanValidator
         implements PlanSanityChecker.Checker

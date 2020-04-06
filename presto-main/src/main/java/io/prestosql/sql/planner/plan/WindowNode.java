@@ -20,8 +20,11 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
 import io.prestosql.sql.planner.OrderingScheme;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.FrameBound;
 import io.prestosql.sql.tree.WindowFrame;
@@ -41,7 +44,7 @@ import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class WindowNode
-        extends PlanNode
+        extends InternalPlanNode
 {
     private final PlanNode source;
     private final Set<Symbol> prePartitionedInputs;
@@ -150,7 +153,7 @@ public class WindowNode
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitWindow(this, context);
     }

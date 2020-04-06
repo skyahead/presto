@@ -23,7 +23,7 @@ import io.prestosql.spi.Page;
 import io.prestosql.spiller.SingleStreamSpiller;
 import io.prestosql.spiller.SingleStreamSpillerFactory;
 import io.prestosql.sql.gen.JoinFilterFunctionCompiler.JoinFilterFunctionFactory;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;

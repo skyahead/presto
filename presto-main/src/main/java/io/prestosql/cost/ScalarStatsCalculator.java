@@ -27,7 +27,7 @@ import io.prestosql.sql.analyzer.ExpressionAnalyzer;
 import io.prestosql.sql.analyzer.Scope;
 import io.prestosql.sql.planner.ExpressionInterpreter;
 import io.prestosql.sql.planner.NoOpSymbolResolver;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeAnalyzer;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.tree.ArithmeticBinaryExpression;

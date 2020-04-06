@@ -14,7 +14,7 @@
 package io.prestosql.sql.planner.assertions;
 
 import com.google.common.collect.ImmutableMap;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.Assignments;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.SymbolReference;

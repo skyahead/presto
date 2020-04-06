@@ -40,7 +40,7 @@ import io.prestosql.operator.ValuesOperator;
 import io.prestosql.spi.Page;
 import io.prestosql.spi.PrestoException;
 import io.prestosql.sql.gen.JoinFilterFunctionCompiler;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.planner.plan.SpatialJoinNode.Type;
 import io.prestosql.testing.MaterializedResult;
 import io.prestosql.testing.TestingTaskContext;

@@ -13,6 +13,7 @@
  */
 package io.prestosql.sql.planner;
 
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.TupleDomain;
 

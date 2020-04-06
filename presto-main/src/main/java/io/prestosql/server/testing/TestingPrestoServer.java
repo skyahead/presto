@@ -38,7 +38,7 @@ import io.airlift.jmx.testing.TestingJmxModule;
 import io.airlift.json.JsonModule;
 import io.airlift.node.testing.TestingNodeModule;
 import io.airlift.tracetoken.TraceTokenModule;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.connector.ConnectorManager;
 import io.prestosql.cost.StatsCalculator;
 import io.prestosql.dispatcher.DispatchManager;

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.spi.type.FixedWidthType;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeProvider;
 import org.pcollections.HashTreePMap;
 import org.pcollections.PMap;

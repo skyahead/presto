@@ -16,7 +16,7 @@ package io.prestosql.cost;
 import com.google.common.annotations.VisibleForTesting;
 import io.prestosql.Session;
 import io.prestosql.matching.Pattern;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.Lookup;
 import io.prestosql.sql.planner.plan.JoinNode;

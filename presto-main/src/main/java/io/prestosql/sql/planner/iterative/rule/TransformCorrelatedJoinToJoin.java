@@ -23,7 +23,7 @@ import io.prestosql.sql.planner.optimizations.PlanNodeDecorrelator;
 import io.prestosql.sql.planner.optimizations.PlanNodeDecorrelator.DecorrelatedNode;
 import io.prestosql.sql.planner.plan.CorrelatedJoinNode;
 import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.tree.Expression;
 
 import java.util.Optional;

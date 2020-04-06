@@ -14,6 +14,7 @@
 package io.prestosql.sql.planner;
 
 import io.prestosql.Session;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.expression.Constant;
 import io.prestosql.spi.expression.FieldDereference;

@@ -50,8 +50,8 @@ import io.prestosql.metadata.Split;
 import io.prestosql.operator.TaskStats;
 import io.prestosql.server.TaskUpdateRequest;
 import io.prestosql.sql.planner.PlanFragment;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
 import org.joda.time.DateTime;
 
 import javax.annotation.concurrent.GuardedBy;

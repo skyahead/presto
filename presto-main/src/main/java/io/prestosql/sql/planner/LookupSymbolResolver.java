@@ -14,6 +14,7 @@
 package io.prestosql.sql.planner;
 
 import com.google.common.collect.ImmutableMap;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.predicate.NullableValue;
 

@@ -22,7 +22,7 @@ import io.airlift.testing.Assertions;
 import io.airlift.units.Duration;
 import io.prestosql.Session;
 import io.prestosql.Session.SessionBuilder;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.cost.StatsCalculator;
 import io.prestosql.execution.QueryManager;
 import io.prestosql.execution.warnings.WarningCollector;

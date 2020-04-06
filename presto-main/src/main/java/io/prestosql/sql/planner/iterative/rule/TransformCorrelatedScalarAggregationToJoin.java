@@ -22,7 +22,7 @@ import io.prestosql.sql.planner.optimizations.ScalarAggregationToJoinRewriter;
 import io.prestosql.sql.planner.plan.AggregationNode;
 import io.prestosql.sql.planner.plan.CorrelatedJoinNode;
 import io.prestosql.sql.planner.plan.EnforceSingleRowNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.planner.plan.ProjectNode;
 
 import java.util.Optional;

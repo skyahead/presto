@@ -19,13 +19,8 @@ import io.prestosql.sql.planner.TypeProvider;
 import io.prestosql.sql.planner.iterative.GroupReference;
 import io.prestosql.sql.planner.iterative.rule.DetermineJoinDistributionType;
 import io.prestosql.sql.planner.iterative.rule.ReorderJoins;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.UnionNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.PlanNode;
 
 import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Inject;
@@ -85,7 +80,7 @@ public class CostCalculatorWithEstimatedExchanges
     }
 
     private static class ExchangeCostEstimator
-            extends PlanVisitor<LocalCostEstimate, Void>
+            extends InternalPlanVisitor<LocalCostEstimate, Void>
     {
         private final StatsProvider stats;
         private final TypeProvider types;

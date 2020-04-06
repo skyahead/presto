@@ -20,7 +20,7 @@ import io.prestosql.matching.Pattern;
 import io.prestosql.sql.planner.iterative.Rule;
 import io.prestosql.sql.planner.plan.JoinNode;
 import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import static io.prestosql.matching.Capture.newCapture;
 import static io.prestosql.sql.planner.optimizations.QueryCardinalityUtil.isAtMost;

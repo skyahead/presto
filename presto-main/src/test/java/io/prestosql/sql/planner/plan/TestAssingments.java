@@ -14,7 +14,7 @@
 package io.prestosql.sql.planner.plan;
 
 import com.google.common.collect.ImmutableCollection;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import org.testng.annotations.Test;
 
 import static io.prestosql.sql.tree.BooleanLiteral.TRUE_LITERAL;

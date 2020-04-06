@@ -15,6 +15,7 @@ package io.prestosql.sql.planner;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.metadata.Metadata;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.ExpressionUtils;
 import io.prestosql.sql.tree.AstVisitor;
 import io.prestosql.sql.tree.BetweenPredicate;

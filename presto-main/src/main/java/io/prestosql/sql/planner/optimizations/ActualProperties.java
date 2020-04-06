@@ -23,7 +23,7 @@ import io.prestosql.spi.connector.LocalProperty;
 import io.prestosql.spi.predicate.NullableValue;
 import io.prestosql.sql.planner.Partitioning;
 import io.prestosql.sql.planner.PartitioningHandle;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.Expression;
 
 import javax.annotation.concurrent.Immutable;

@@ -13,6 +13,7 @@
  */
 package io.prestosql.sql.planner;
 
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.analyzer.FieldId;
 import io.prestosql.sql.analyzer.RelationId;
 import io.prestosql.sql.tree.ArithmeticBinaryExpression;

@@ -15,9 +15,9 @@ package io.prestosql.sql.planner.iterative.rule;
 
 import com.google.common.collect.Maps;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 
 import java.util.Map;
 import java.util.Optional;

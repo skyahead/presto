@@ -13,6 +13,7 @@
  */
 package io.prestosql.sql.planner;
 
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.ExpressionRewriter;
 import io.prestosql.sql.tree.ExpressionTreeRewriter;

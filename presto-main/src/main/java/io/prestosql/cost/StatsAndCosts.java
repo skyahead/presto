@@ -20,8 +20,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.graph.Traverser;
 import io.prestosql.execution.StageInfo;
 import io.prestosql.sql.planner.PlanFragment;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import java.util.Map;
 

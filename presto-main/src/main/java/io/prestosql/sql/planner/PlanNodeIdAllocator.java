@@ -13,7 +13,7 @@
  */
 package io.prestosql.sql.planner;
 
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 public class PlanNodeIdAllocator
 {

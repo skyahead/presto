@@ -23,33 +23,19 @@ import io.prestosql.execution.QueryManagerConfig;
 import io.prestosql.execution.scheduler.BucketNodeMap;
 import io.prestosql.execution.warnings.WarningCollector;
 import io.prestosql.metadata.Metadata;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.TableHandle;
 import io.prestosql.metadata.TableProperties.TablePartitioning;
 import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.PrestoWarning;
 import io.prestosql.spi.connector.ConnectorPartitionHandle;
 import io.prestosql.spi.connector.ConnectorPartitioningHandle;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.ExplainAnalyzeNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.OutputNode;
-import io.prestosql.sql.planner.plan.PlanFragmentId;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.RemoteSourceNode;
-import io.prestosql.sql.planner.plan.RowNumberNode;
-import io.prestosql.sql.planner.plan.SimplePlanRewriter;
-import io.prestosql.sql.planner.plan.StatisticsWriterNode;
-import io.prestosql.sql.planner.plan.TableDeleteNode;
-import io.prestosql.sql.planner.plan.TableFinishNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
-import io.prestosql.sql.planner.plan.TableWriterNode;
-import io.prestosql.sql.planner.plan.TopNRowNumberNode;
-import io.prestosql.sql.planner.plan.ValuesNode;
-import io.prestosql.sql.planner.plan.WindowNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
+import io.prestosql.spi.plan.TableScanNode;
 
 import javax.inject.Inject;
 
@@ -532,7 +518,7 @@ public class PlanFragmenter
     }
 
     private static class GroupedExecutionTagger
-            extends PlanVisitor<GroupedExecutionProperties, Void>
+            extends InternalPlanVisitor<GroupedExecutionProperties, Void>
     {
         private final Session session;
         private final Metadata metadata;

@@ -14,15 +14,17 @@
 package io.prestosql.sql.planner.iterative;
 
 import com.google.common.collect.ImmutableList;
-import io.prestosql.sql.planner.Symbol;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.PlanVisitor;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+import io.prestosql.sql.planner.plan.InternalPlanNode;
+import io.prestosql.sql.planner.plan.InternalPlanVisitor;
+
 
 import java.util.List;
 
 public class GroupReference
-        extends PlanNode
+        extends InternalPlanNode
 {
     private final int groupId;
     private final List<Symbol> outputs;
@@ -46,7 +48,7 @@ public class GroupReference
     }
 
     @Override
-    public <R, C> R accept(PlanVisitor<R, C> visitor, C context)
+    public <R, C> R accept(InternalPlanVisitor<R, C> visitor, C context)
     {
         return visitor.visitGroupReference(this, context);
     }

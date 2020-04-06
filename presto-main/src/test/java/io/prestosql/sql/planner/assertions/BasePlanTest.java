@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.warnings.WarningCollector;
 import io.prestosql.plugin.tpch.TpchConnectorFactory;
 import io.prestosql.sql.planner.LogicalPlanner;

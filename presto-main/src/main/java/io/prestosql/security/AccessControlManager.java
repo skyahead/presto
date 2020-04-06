@@ -20,7 +20,7 @@ import com.google.common.collect.ImmutableSet;
 import io.airlift.log.Logger;
 import io.airlift.stats.CounterStat;
 import io.prestosql.FullConnectorSecurityContext;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.metadata.QualifiedObjectName;
 import io.prestosql.plugin.base.security.AllowAllSystemAccessControl;
 import io.prestosql.plugin.base.security.FileBasedSystemAccessControl;

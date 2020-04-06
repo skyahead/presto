@@ -20,7 +20,7 @@ import io.prestosql.memory.context.MemoryTrackingContext;
 import io.prestosql.metadata.Split;
 import io.prestosql.spi.Page;
 import io.prestosql.spi.connector.UpdatablePageSource;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 
 import java.util.ArrayList;
 import java.util.List;

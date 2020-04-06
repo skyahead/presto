@@ -20,7 +20,7 @@ import io.prestosql.sql.analyzer.ExpressionTreeUtils;
 import io.prestosql.sql.planner.ExpressionExtractor;
 import io.prestosql.sql.planner.TypeAnalyzer;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNode;
 import io.prestosql.sql.tree.Identifier;
 
 import java.util.List;

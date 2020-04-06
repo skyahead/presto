@@ -30,22 +30,14 @@ import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.sql.planner.DomainTranslator;
 import io.prestosql.sql.planner.PlanNodeIdAllocator;
-import io.prestosql.sql.planner.Symbol;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.planner.SymbolAllocator;
 import io.prestosql.sql.planner.TypeProvider;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.FilterNode;
-import io.prestosql.sql.planner.plan.IndexJoinNode;
-import io.prestosql.sql.planner.plan.IndexSourceNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.ProjectNode;
-import io.prestosql.sql.planner.plan.SimplePlanRewriter;
-import io.prestosql.sql.planner.plan.SortNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
-import io.prestosql.sql.planner.plan.WindowNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.planner.plan.WindowNode.Function;
 import io.prestosql.sql.tree.BooleanLiteral;
 import io.prestosql.sql.tree.Expression;
@@ -478,7 +470,7 @@ public class IndexJoinOptimizer
         }
 
         private static class Visitor
-                extends PlanVisitor<Map<Symbol, Symbol>, Set<Symbol>>
+                extends InternalPlanVisitor<Map<Symbol, Symbol>, Set<Symbol>>
         {
             @Override
             protected Map<Symbol, Symbol> visitPlan(PlanNode node, Set<Symbol> lookupSymbols)

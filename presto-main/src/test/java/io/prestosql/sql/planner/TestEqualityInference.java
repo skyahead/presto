@@ -22,6 +22,7 @@ import com.google.common.collect.Iterables;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.MetadataManager;
 import io.prestosql.operator.scalar.TryFunction;
+import io.prestosql.spi.Symbol;
 import io.prestosql.sql.ExpressionUtils;
 import io.prestosql.sql.tree.ArithmeticBinaryExpression;
 import io.prestosql.sql.tree.ArrayConstructor;

@@ -17,6 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.parser.SqlParser;

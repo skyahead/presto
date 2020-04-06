@@ -31,7 +31,7 @@ import io.prestosql.spi.block.RunLengthEncodedBlock;
 import io.prestosql.spi.connector.ConnectorPageSink;
 import io.prestosql.spi.type.Type;
 import io.prestosql.split.PageSinkManager;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.planner.plan.TableWriterNode.WriterTarget;
 import io.prestosql.util.AutoCloseableCloser;
 import io.prestosql.util.Mergeable;

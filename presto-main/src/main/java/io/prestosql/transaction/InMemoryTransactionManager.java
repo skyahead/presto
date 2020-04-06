@@ -23,7 +23,7 @@ import io.airlift.concurrent.ExecutorServiceAdapter;
 import io.airlift.log.Logger;
 import io.airlift.units.Duration;
 import io.prestosql.NotInTransactionException;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.metadata.Catalog;
 import io.prestosql.metadata.CatalogManager;
 import io.prestosql.metadata.CatalogMetadata;

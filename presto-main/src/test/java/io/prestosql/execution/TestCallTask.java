@@ -15,7 +15,7 @@ package io.prestosql.execution;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.Session;
-import io.prestosql.connector.CatalogName;
+import io.prestosql.spi.connector.CatalogName;
 import io.prestosql.execution.warnings.WarningCollector;
 import io.prestosql.metadata.CatalogManager;
 import io.prestosql.metadata.MetadataManager;

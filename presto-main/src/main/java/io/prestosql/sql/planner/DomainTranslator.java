@@ -20,6 +20,7 @@ import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.OperatorNotFoundException;
 import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.block.Block;
 import io.prestosql.spi.predicate.DiscreteValues;
 import io.prestosql.spi.predicate.Domain;

@@ -20,29 +20,16 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import io.prestosql.Session;
 import io.prestosql.metadata.Metadata;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.predicate.Domain;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.type.Type;
-import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.AssignUniqueId;
-import io.prestosql.sql.planner.plan.DistinctLimitNode;
-import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.FilterNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.ProjectNode;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SortNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
-import io.prestosql.sql.planner.plan.TopNNode;
-import io.prestosql.sql.planner.plan.UnionNode;
-import io.prestosql.sql.planner.plan.UnnestNode;
-import io.prestosql.sql.planner.plan.ValuesNode;
-import io.prestosql.sql.planner.plan.WindowNode;
+import io.prestosql.sql.planner.plan.*;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.tree.ComparisonExpression;
 import io.prestosql.sql.tree.Expression;
 import io.prestosql.sql.tree.NodeRef;
@@ -104,7 +91,7 @@ public class EffectivePredicateExtractor
     }
 
     private static class Visitor
-            extends PlanVisitor<Expression, Void>
+            extends InternalPlanVisitor<Expression, Void>
     {
         private final DomainTranslator domainTranslator;
         private final Metadata metadata;

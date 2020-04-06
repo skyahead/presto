@@ -39,7 +39,7 @@ import io.prestosql.index.IndexManager;
 import io.prestosql.metadata.Metadata;
 import io.prestosql.metadata.ResolvedFunction;
 import io.prestosql.metadata.Signature;
-import io.prestosql.metadata.TableHandle;
+import io.prestosql.spi.*;
 import io.prestosql.operator.AggregationOperator.AggregationOperatorFactory;
 import io.prestosql.operator.AssignUniqueIdOperator;
 import io.prestosql.operator.DeleteOperator.DeleteOperatorFactory;
@@ -116,9 +116,6 @@ import io.prestosql.operator.project.CursorProcessor;
 import io.prestosql.operator.project.PageProcessor;
 import io.prestosql.operator.window.FrameInfo;
 import io.prestosql.operator.window.WindowFunctionSupplier;
-import io.prestosql.spi.Page;
-import io.prestosql.spi.PageBuilder;
-import io.prestosql.spi.PrestoException;
 import io.prestosql.spi.block.SortOrder;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ConnectorIndex;
@@ -141,47 +138,15 @@ import io.prestosql.sql.gen.JoinFilterFunctionCompiler.JoinFilterFunctionFactory
 import io.prestosql.sql.gen.OrderingCompiler;
 import io.prestosql.sql.gen.PageFunctionCompiler;
 import io.prestosql.sql.planner.optimizations.IndexJoinOptimizer;
-import io.prestosql.sql.planner.plan.AggregationNode;
+import io.prestosql.sql.planner.plan.*;
 import io.prestosql.sql.planner.plan.AggregationNode.Aggregation;
 import io.prestosql.sql.planner.plan.AggregationNode.Step;
-import io.prestosql.sql.planner.plan.AssignUniqueId;
-import io.prestosql.sql.planner.plan.Assignments;
-import io.prestosql.sql.planner.plan.DeleteNode;
-import io.prestosql.sql.planner.plan.DistinctLimitNode;
-import io.prestosql.sql.planner.plan.EnforceSingleRowNode;
-import io.prestosql.sql.planner.plan.ExchangeNode;
-import io.prestosql.sql.planner.plan.ExplainAnalyzeNode;
-import io.prestosql.sql.planner.plan.FilterNode;
-import io.prestosql.sql.planner.plan.GroupIdNode;
-import io.prestosql.sql.planner.plan.IndexJoinNode;
-import io.prestosql.sql.planner.plan.IndexSourceNode;
-import io.prestosql.sql.planner.plan.JoinNode;
-import io.prestosql.sql.planner.plan.LimitNode;
-import io.prestosql.sql.planner.plan.MarkDistinctNode;
-import io.prestosql.sql.planner.plan.OutputNode;
-import io.prestosql.sql.planner.plan.PlanNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
-import io.prestosql.sql.planner.plan.PlanVisitor;
-import io.prestosql.sql.planner.plan.ProjectNode;
-import io.prestosql.sql.planner.plan.RemoteSourceNode;
-import io.prestosql.sql.planner.plan.RowNumberNode;
-import io.prestosql.sql.planner.plan.SampleNode;
-import io.prestosql.sql.planner.plan.SemiJoinNode;
-import io.prestosql.sql.planner.plan.SortNode;
-import io.prestosql.sql.planner.plan.SpatialJoinNode;
-import io.prestosql.sql.planner.plan.StatisticAggregationsDescriptor;
-import io.prestosql.sql.planner.plan.StatisticsWriterNode;
-import io.prestosql.sql.planner.plan.TableDeleteNode;
-import io.prestosql.sql.planner.plan.TableFinishNode;
-import io.prestosql.sql.planner.plan.TableScanNode;
-import io.prestosql.sql.planner.plan.TableWriterNode;
+import io.prestosql.spi.plan.FilterNode;
+import io.prestosql.spi.plan.PlanNode;
+import io.prestosql.spi.plan.PlanNodeId;
+
+import io.prestosql.spi.plan.TableScanNode;
 import io.prestosql.sql.planner.plan.TableWriterNode.DeleteTarget;
-import io.prestosql.sql.planner.plan.TopNNode;
-import io.prestosql.sql.planner.plan.TopNRowNumberNode;
-import io.prestosql.sql.planner.plan.UnionNode;
-import io.prestosql.sql.planner.plan.UnnestNode;
-import io.prestosql.sql.planner.plan.ValuesNode;
-import io.prestosql.sql.planner.plan.WindowNode;
 import io.prestosql.sql.planner.plan.WindowNode.Frame;
 import io.prestosql.sql.relational.LambdaDefinitionExpression;
 import io.prestosql.sql.relational.RowExpression;
@@ -703,7 +668,7 @@ public class LocalExecutionPlanner
     }
 
     private class Visitor
-            extends PlanVisitor<PhysicalOperation, LocalExecutionPlanContext>
+            extends InternalPlanVisitor<PhysicalOperation, LocalExecutionPlanContext>
     {
         private final Session session;
         private final StageExecutionDescriptor stageExecutionDescriptor;

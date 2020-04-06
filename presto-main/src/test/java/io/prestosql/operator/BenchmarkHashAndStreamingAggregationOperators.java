@@ -24,7 +24,7 @@ import io.prestosql.spi.block.BlockBuilder;
 import io.prestosql.spiller.SpillerFactory;
 import io.prestosql.sql.gen.JoinCompiler;
 import io.prestosql.sql.planner.plan.AggregationNode;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.sql.tree.QualifiedName;
 import io.prestosql.testing.TestingTaskContext;
 import org.openjdk.jmh.annotations.Benchmark;

@@ -15,6 +15,7 @@ package io.prestosql.sql.planner;
 
 import com.google.common.collect.ImmutableList;
 import io.prestosql.metadata.ResolvedFunction;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.type.Type;
 import io.prestosql.sql.analyzer.Analysis;
 import io.prestosql.sql.analyzer.ResolvedField;

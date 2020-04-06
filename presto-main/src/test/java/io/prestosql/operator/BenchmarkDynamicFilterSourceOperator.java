@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import io.airlift.units.DataSize;
 import io.prestosql.spi.Page;
 import io.prestosql.spi.PageBuilder;
-import io.prestosql.sql.planner.plan.PlanNodeId;
+import io.prestosql.spi.plan.PlanNodeId;
 import io.prestosql.testing.TestingTaskContext;
 import io.prestosql.tpch.LineItem;
 import io.prestosql.tpch.LineItemGenerator;
