@@ -1086,7 +1086,7 @@ public final class MetadataManager
     }
 
     @Override
-    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, GroupingSetDescriptor groupingSets, Map<Symbol, Aggregation> aggregations)
+    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, List<ColumnHandle> columnHandles, Map<Symbol, Aggregation> aggregations)
     {
         CatalogName catalogName = table.getCatalogName();
         ConnectorMetadata metadata = getMetadata(session, catalogName);
@@ -1096,12 +1096,10 @@ public final class MetadataManager
         }
 
         ConnectorSession connectorSession = session.toConnectorSession(catalogName);
-        return metadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, groupingSets, aggregations)
+        return metadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, columnHandles, aggregations)
             .map(result -> new AggregationApplicationResult<>(
                 new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
-                result.isPartial(),
-                result.getGroupingSets(),
-                result.getAggregations()));
+                result.getAssignments()));
     }
 
 

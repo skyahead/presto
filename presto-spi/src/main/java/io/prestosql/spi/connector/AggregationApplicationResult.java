@@ -13,9 +13,8 @@
  */
 package io.prestosql.spi.connector;
 
+
 import io.prestosql.spi.Symbol;
-import io.prestosql.spi.plan.AggregationNode.Aggregation;
-import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 
 import java.util.Map;
 
@@ -24,16 +23,12 @@ import static java.util.Objects.requireNonNull;
 public class AggregationApplicationResult<T>
 {
     private final T handle;
-    private final boolean isPartial;
-    private final GroupingSetDescriptor groupingSets;
-    private final Map<Symbol, Aggregation> aggregations;
+    private final Map<Symbol, ColumnHandle> assignments;
 
-    public AggregationApplicationResult(T handle, boolean isPartial, GroupingSetDescriptor groupingSets, Map<Symbol, Aggregation> aggregations)
+    public AggregationApplicationResult(T handle, Map<Symbol, ColumnHandle> assignments)
     {
         this.handle = requireNonNull(handle, "handle is null");
-        this.isPartial = isPartial;
-        this.groupingSets = groupingSets;
-        this.aggregations = requireNonNull(aggregations, "aggregates can not be null");
+        this.assignments = requireNonNull(assignments, "assignments is null");
     }
 
     public T getHandle()
@@ -41,15 +36,7 @@ public class AggregationApplicationResult<T>
         return handle;
     }
 
-    public boolean isPartial() {
-        return isPartial;
-    }
-
-    public GroupingSetDescriptor getGroupingSets() {
-        return groupingSets;
-    }
-
-    public Map<Symbol, Aggregation> getAggregations() {
-        return aggregations;
+    public Map<Symbol, ColumnHandle> getAssignments() {
+        return assignments;
     }
 }

@@ -45,7 +45,6 @@ import io.prestosql.spi.function.OperatorType;
 import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
-import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -431,7 +430,7 @@ public abstract class AbstractMockMetadata
     }
 
     @Override
-    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, GroupingSetDescriptor groupingSets, Map<Symbol, Aggregation> aggregations)
+    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, List<ColumnHandle> columnHandles, Map<Symbol, Aggregation> aggregations)
     {
         return Optional.empty();
     }
