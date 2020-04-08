@@ -27,6 +27,7 @@ import io.prestosql.spi.block.BlockEncodingSerde;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.function.OperatorType;
 import io.prestosql.spi.metadata.ResolvedFunction;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
@@ -330,7 +331,7 @@ public interface Metadata
 
     Optional<ProjectionApplicationResult<TableHandle>> applyProjection(Session session, TableHandle table, List<ConnectorExpression> projections, Map<String, ColumnHandle> assignments);
 
-    Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, Aggregation> aggregations);
+    Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, AggregationNode aggregationNode);
 
     Optional<TableHandle> applySample(Session session, TableHandle table, SampleType sampleType, double sampleRatio);
 

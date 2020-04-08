@@ -36,7 +36,9 @@ import io.prestosql.spi.connector.LimitApplicationResult;
 import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.spi.connector.SchemaTablePrefix;
 import io.prestosql.spi.connector.TableNotFoundException;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.statistics.ComputedStatistics;
 import io.prestosql.spi.statistics.TableStatistics;
@@ -108,7 +110,8 @@ public class JdbcMetadata
                 handle.getTableName(),
                 newDomain,
                 handle.getLimit(),
-                handle.getAggregations());
+                handle.getAggregations(),
+                handle.getGroupingSets());
 
         return Optional.of(new ConstraintApplicationResult<>(handle, constraint.getSummary()));
     }
@@ -133,13 +136,14 @@ public class JdbcMetadata
                 handle.getTableName(),
                 handle.getConstraint(),
                 OptionalLong.of(limit),
-                handle.getAggregations());
+                handle.getAggregations(),
+                handle.getGroupingSets());
 
         return Optional.of(new LimitApplicationResult<>(handle, jdbcClient.isLimitGuaranteed()));
     }
 
     @Override
-    public Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, ColumnHandle> aggColumnHandleMap, Map<Symbol, Aggregation> aggregations)
+    public Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, ColumnHandle> aggColumnHandleMap, Map<Symbol, Aggregation> aggregations, GroupingSetDescriptor groupingSets)
     {
         JdbcTableHandle handle = (JdbcTableHandle) table;
 
@@ -154,7 +158,8 @@ public class JdbcMetadata
             handle.getTableName(),
             handle.getConstraint(),
             handle.getLimit(),
-            Optional.of(aggregations));
+            Optional.of(aggregations),
+            Optional.of(groupingSets));
 
         Map<Symbol, ColumnHandle> newAssignments = new HashMap<>();
         for (Symbol aggFun : aggColumnHandleMap.keySet()) {

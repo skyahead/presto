@@ -62,7 +62,7 @@ public class PushAggregationIntoTableScan
             return Result.empty();
         }
 
-        return metadata.applyAggregation(context.getSession(), tableScan.getTable(), false, tableScan.getAssignments(), aggregationNode.getAggregations())
+        return metadata.applyAggregation(context.getSession(), tableScan.getTable(), false, tableScan.getAssignments(), aggregationNode)
                 .map(result -> {
                     List<Symbol> outputSymbols = new ArrayList<>();
                     outputSymbols.addAll(aggregationNode.getGroupingKeys());

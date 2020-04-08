@@ -20,7 +20,9 @@ import io.prestosql.spi.Symbol;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ConnectorTableHandle;
 import io.prestosql.spi.connector.SchemaTableName;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
 
 import javax.annotation.Nullable;
@@ -44,10 +46,11 @@ public final class JdbcTableHandle
     private final TupleDomain<ColumnHandle> constraint;
     private final OptionalLong limit;
     private final Optional<Map<Symbol, Aggregation>> aggregations;
+    private final Optional<GroupingSetDescriptor> groupingSets;
 
     public JdbcTableHandle(SchemaTableName schemaTableName, @Nullable String catalogName, @Nullable String schemaName, String tableName)
     {
-        this(schemaTableName, catalogName, schemaName, tableName, TupleDomain.all(), OptionalLong.empty(), Optional.empty());
+        this(schemaTableName, catalogName, schemaName, tableName, TupleDomain.all(), OptionalLong.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonCreator
@@ -58,8 +61,8 @@ public final class JdbcTableHandle
         @JsonProperty("tableName") String tableName,
         @JsonProperty("constraint") TupleDomain<ColumnHandle> constraint,
         @JsonProperty("limit") OptionalLong limit,
-        //TODO: adding group by here???
-        @JsonProperty("aggregations") Optional<Map<Symbol, Aggregation>> aggregations)
+        @JsonProperty("aggregations") Optional<Map<Symbol, Aggregation>> aggregations,
+        @JsonProperty("groupingSets") Optional<GroupingSetDescriptor> groupingSets)
     {
         this.schemaTableName = requireNonNull(schemaTableName, "schemaTableName is null");
         this.catalogName = catalogName;
@@ -68,6 +71,7 @@ public final class JdbcTableHandle
         this.constraint = requireNonNull(constraint, "constraint is null");
         this.limit = requireNonNull(limit, "limit is null");
         this.aggregations = aggregations;
+        this.groupingSets = groupingSets;
     }
 
     @JsonProperty
@@ -114,6 +118,12 @@ public final class JdbcTableHandle
         return aggregations;
     }
 
+    @JsonProperty
+    public Optional<GroupingSetDescriptor> getGroupingSets()
+    {
+        return groupingSets;
+    }
+
     @Override
     public boolean equals(Object obj)
     {
@@ -140,6 +150,13 @@ public final class JdbcTableHandle
         builder.append(schemaTableName).append(" ");
         Joiner.on(".").skipNulls().appendTo(builder, catalogName, schemaName, tableName);
         limit.ifPresent(value -> builder.append(" limit=").append(value));
+        aggregations.ifPresent(agg -> {
+            builder.append(" aggregations: ");
+            agg.forEach((key, value) -> builder.append(" key=").append(key).append(", value=").append(value));
+        });
+        groupingSets.ifPresent(gs -> {
+            builder.append(" groupingSets: ").append(gs.getGroupingKeys());
+        });
         return builder.toString();
     }
 }

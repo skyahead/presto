@@ -51,6 +51,7 @@ import io.prestosql.spi.function.OperatorType;
 import io.prestosql.spi.metadata.FunctionId;
 import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.metadata.Signature;
+import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
@@ -1088,18 +1089,18 @@ public final class MetadataManager
     }
 
     @Override
-    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, Aggregation> aggregations)
+    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, AggregationNode aggregationNode)
     {
         CatalogName catalogName = table.getCatalogName();
-        ConnectorMetadata metadata = getMetadata(session, catalogName);
+        ConnectorMetadata connectorMetadata = getMetadata(session, catalogName);
 
-        if (metadata.usesLegacyTableLayouts()) {
+        if (connectorMetadata.usesLegacyTableLayouts()) {
             return Optional.empty();
         }
 
         Map<Symbol, ColumnHandle> aggColumnHandleMap = new HashMap<>();
-        for (Symbol aggFun : aggregations.keySet()) {
-            Set<Expression> arguments = new HashSet<>(aggregations.get(aggFun).getArguments());
+        for (Symbol aggFun : aggregationNode.getAggregations().keySet()) {
+            Set<Expression> arguments = new HashSet<>(aggregationNode.getAggregations().get(aggFun).getArguments());
             for (Expression expression : arguments) {
                 Symbol symbol = Symbol.from(expression);
                 ColumnHandle oldColumnHandle = assignments.get(symbol);
@@ -1110,7 +1111,7 @@ public final class MetadataManager
         }
 
         ConnectorSession connectorSession = session.toConnectorSession(catalogName);
-        return metadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, assignments, aggColumnHandleMap, aggregations)
+        return connectorMetadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, assignments, aggColumnHandleMap, aggregationNode.getAggregations(), aggregationNode.getGroupingSets())
             .map(result -> new AggregationApplicationResult<>(
                 new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
                 result.getAssignments()));
