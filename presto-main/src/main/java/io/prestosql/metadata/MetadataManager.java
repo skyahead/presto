@@ -1097,20 +1097,20 @@ public final class MetadataManager
             return Optional.empty();
         }
 
-        Map<Symbol, ColumnHandle> aggregationMap = new HashMap<>();
+        Map<Symbol, ColumnHandle> aggColumnHandleMap = new HashMap<>();
         for (Symbol aggFun : aggregations.keySet()) {
             Set<Expression> arguments = new HashSet<>(aggregations.get(aggFun).getArguments());
             for (Expression expression : arguments) {
                 Symbol symbol = Symbol.from(expression);
                 ColumnHandle oldColumnHandle = assignments.get(symbol);
                 if (null != oldColumnHandle) {
-                    aggregationMap.put(aggFun, oldColumnHandle);
+                    aggColumnHandleMap.put(aggFun, oldColumnHandle);
                 }
             }
         }
 
         ConnectorSession connectorSession = session.toConnectorSession(catalogName);
-        return metadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, assignments, aggregationMap)
+        return metadata.applyAggregation(connectorSession, table.getConnectorHandle(), isPartial, assignments, aggColumnHandleMap, aggregations)
             .map(result -> new AggregationApplicationResult<>(
                 new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
                 result.getAssignments()));

@@ -139,11 +139,11 @@ public class JdbcMetadata
     }
 
     @Override
-    public Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, ColumnHandle> aggregationMap)
+    public Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, ColumnHandle> aggColumnHandleMap, Map<Symbol, Aggregation> aggregations)
     {
         JdbcTableHandle handle = (JdbcTableHandle) table;
 
-        if (!jdbcClient.supportsAggregation() || isPartial || aggregationMap.isEmpty() || handle.getAggregations().isPresent()) {
+        if (!jdbcClient.supportsAggregation() || isPartial || aggregations.isEmpty() || handle.getAggregations().isPresent()) {
             return Optional.empty();
         }
 
@@ -154,11 +154,11 @@ public class JdbcMetadata
             handle.getTableName(),
             handle.getConstraint(),
             handle.getLimit(),
-            Optional.empty());
+            Optional.of(aggregations));
 
         Map<Symbol, ColumnHandle> newAssignments = new HashMap<>();
-        for (Symbol aggFun : aggregationMap.keySet()) {
-            JdbcColumnHandle jdbcColumnHandle = (JdbcColumnHandle) aggregationMap.get(aggFun);
+        for (Symbol aggFun : aggColumnHandleMap.keySet()) {
+            JdbcColumnHandle jdbcColumnHandle = (JdbcColumnHandle) aggColumnHandleMap.get(aggFun);
             newAssignments.put(aggFun, JdbcColumnHandle.builderFrom(jdbcColumnHandle).setSymbol(Optional.of(aggFun)).build());
         }
 
