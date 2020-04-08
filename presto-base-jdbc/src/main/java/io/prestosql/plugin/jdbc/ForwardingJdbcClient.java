@@ -189,6 +189,12 @@ public abstract class ForwardingJdbcClient
     }
 
     @Override
+    public boolean supportsAggregation()
+    {
+        return delegate().supportsAggregation();
+    }
+
+    @Override
     public boolean isLimitGuaranteed()
     {
         return delegate().isLimitGuaranteed();

@@ -330,7 +330,7 @@ public interface Metadata
 
     Optional<ProjectionApplicationResult<TableHandle>> applyProjection(Session session, TableHandle table, List<ConnectorExpression> projections, Map<String, ColumnHandle> assignments);
 
-    Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, List<ColumnHandle> columnHandles, Map<Symbol, Aggregation> aggregations);
+    Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, Aggregation> aggregations);
 
     Optional<TableHandle> applySample(Session session, TableHandle table, SampleType sampleType, double sampleRatio);
 

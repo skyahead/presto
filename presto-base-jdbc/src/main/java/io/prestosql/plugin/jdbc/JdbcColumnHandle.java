@@ -16,6 +16,7 @@ package io.prestosql.plugin.jdbc;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Joiner;
+import io.prestosql.spi.Symbol;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ColumnMetadata;
 import io.prestosql.spi.type.Type;
@@ -33,11 +34,12 @@ public final class JdbcColumnHandle
     private final Type columnType;
     private final boolean nullable;
     private final Optional<String> comment;
+    private final Optional<Symbol> symbol;
 
     // All and only required fields
     public JdbcColumnHandle(String columnName, JdbcTypeHandle jdbcTypeHandle, Type columnType)
     {
-        this(columnName, jdbcTypeHandle, columnType, true, Optional.empty());
+        this(columnName, jdbcTypeHandle, columnType, true, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,7 +48,7 @@ public final class JdbcColumnHandle
     @Deprecated
     public JdbcColumnHandle(String columnName, JdbcTypeHandle jdbcTypeHandle, Type columnType, boolean nullable)
     {
-        this(columnName, jdbcTypeHandle, columnType, nullable, Optional.empty());
+        this(columnName, jdbcTypeHandle, columnType, nullable, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -59,13 +61,15 @@ public final class JdbcColumnHandle
             @JsonProperty("jdbcTypeHandle") JdbcTypeHandle jdbcTypeHandle,
             @JsonProperty("columnType") Type columnType,
             @JsonProperty("nullable") boolean nullable,
-            @JsonProperty("comment") Optional<String> comment)
+            @JsonProperty("comment") Optional<String> comment,
+            @JsonProperty("symbol") Optional<Symbol> symbol)
     {
         this.columnName = requireNonNull(columnName, "columnName is null");
         this.jdbcTypeHandle = requireNonNull(jdbcTypeHandle, "jdbcTypeHandle is null");
         this.columnType = requireNonNull(columnType, "columnType is null");
         this.nullable = nullable;
         this.comment = requireNonNull(comment, "comment is null");
+        this.symbol = symbol;
     }
 
     @JsonProperty
@@ -96,6 +100,12 @@ public final class JdbcColumnHandle
     public Optional<String> getComment()
     {
         return comment;
+    }
+
+    @JsonProperty
+    public Optional<Symbol> getSymbol()
+    {
+        return symbol;
     }
 
     public ColumnMetadata getColumnMetadata()
@@ -153,6 +163,7 @@ public final class JdbcColumnHandle
         private Type columnType;
         private boolean nullable = true;
         private Optional<String> comment = Optional.empty();
+        private Optional<Symbol> symbol = Optional.empty();
 
         public Builder() {}
 
@@ -163,6 +174,7 @@ public final class JdbcColumnHandle
             this.columnType = handle.getColumnType();
             this.nullable = handle.isNullable();
             this.comment = handle.getComment();
+            this.symbol = handle.getSymbol();
         }
 
         public Builder setColumnName(String columnName)
@@ -194,6 +206,12 @@ public final class JdbcColumnHandle
             this.comment = comment;
             return this;
         }
+        
+        public Builder setSymbol(Optional<Symbol> symbol)
+        {
+            this.symbol = symbol;
+            return this;
+        }
 
         public JdbcColumnHandle build()
         {
@@ -202,7 +220,8 @@ public final class JdbcColumnHandle
                     jdbcTypeHandle,
                     columnType,
                     nullable,
-                    comment);
+                    comment,
+                    symbol);
         }
     }
 }

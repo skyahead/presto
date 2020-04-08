@@ -806,11 +806,11 @@ public interface ConnectorMetadata
      * @param session
      * @param handle
      * @param isPartial
-     * @param columnHandles
-     * @param aggregations
+     * @param assignments
+     * @param aggregationMap
      * @return
      */
-    default Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle handle, boolean isPartial, List<ColumnHandle> columnHandles, Map<Symbol, Aggregation> aggregations)
+    default Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle handle, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, ColumnHandle> aggregationMap)
     {
         return Optional.empty();
     }

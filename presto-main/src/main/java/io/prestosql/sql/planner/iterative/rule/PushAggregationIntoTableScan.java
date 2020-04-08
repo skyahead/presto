@@ -62,50 +62,8 @@ public class PushAggregationIntoTableScan
             return Result.empty();
         }
 
-        List<ColumnHandle> columnHandles = new ArrayList<>();
-        aggregationNode.getGroupingKeys().forEach( groupByKey -> columnHandles.add(tableScan.getAssignments().get(groupByKey)));
-
-        return metadata.applyAggregation(context.getSession(), tableScan.getTable(), false, columnHandles, aggregationNode.getAggregations())
+        return metadata.applyAggregation(context.getSession(), tableScan.getTable(), false, tableScan.getAssignments(), aggregationNode.getAggregations())
                 .map(result -> {
-
-                    /**
-                     *     public TableScanNode(
-                     *             PlanNodeId id,
-                     *             TableHandle table,
-                     *             List<Symbol> outputs,
-                     *             Map<Symbol, ColumnHandle> assignments,
-                     *             TupleDomain<ColumnHandle> enforcedConstraint)
-                     *
-
-                     *
-                     */
-
-//                    private Optional<PlanNode> tryCreatingNewScanNode(PlanNode plan)
-//                    {
-//                        Optional<DruidQueryGenerator.DruidQueryGeneratorResult> dql = druidQueryGenerator.generate(plan, session);
-//                        if (!dql.isPresent()) {
-//                            return Optional.empty();
-//                        }
-//                        DruidTableHandle druidTableHandle = getDruidTableHandle(tableScanNode).orElseThrow(() -> new PrestoException(DRUID_QUERY_GENERATOR_FAILURE, "Expected to find a druid table handle"));
-//                        DruidQueryGeneratorContext context = dql.get().getContext();
-//                        TableHandle oldTableHandle = tableScanNode.getTable();
-//                        Map<VariableReferenceExpression, DruidColumnHandle> assignments = context.getAssignments();
-//                        TableHandle newTableHandle = new TableHandle(
-//                            oldTableHandle.getConnectorId(),
-//                            new DruidTableHandle(druidTableHandle.getSchemaName(), druidTableHandle.getTableName(), Optional.of(dql.get().getGeneratedDql())),
-//                            oldTableHandle.getTransaction(),
-//                            oldTableHandle.getLayout());
-
-
-//                        return Optional.of(
-//                            new TableScanNode(
-//                                idAllocator.getNextId(),
-//                                newTableHandle,
-//                                ImmutableList.copyOf(assignments.keySet()),
-//                                assignments.entrySet().stream().collect(toImmutableMap(Map.Entry::getKey, (e) -> (ColumnHandle) (e.getValue()))),
-//                                tableScanNode.getCurrentConstraint(),
-//                                tableScanNode.getEnforcedConstraint()));
-
                     List<Symbol> outputSymbols = new ArrayList<>();
                     outputSymbols.addAll(aggregationNode.getGroupingKeys());
                     outputSymbols.addAll(aggregationNode.getAggregations().keySet());

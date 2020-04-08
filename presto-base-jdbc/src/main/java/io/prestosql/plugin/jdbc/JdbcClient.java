@@ -65,6 +65,8 @@ public interface JdbcClient
 
     boolean supportsLimit();
 
+    boolean supportsAggregation();
+
     boolean isLimitGuaranteed();
 
     void addColumn(ConnectorSession session, JdbcTableHandle handle, ColumnMetadata column);

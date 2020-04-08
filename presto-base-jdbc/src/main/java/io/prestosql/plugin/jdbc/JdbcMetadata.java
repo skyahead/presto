@@ -17,6 +17,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.slice.Slice;
 import io.prestosql.spi.PrestoException;
+import io.prestosql.spi.Symbol;
+import io.prestosql.spi.connector.AggregationApplicationResult;
 import io.prestosql.spi.connector.ColumnHandle;
 import io.prestosql.spi.connector.ColumnMetadata;
 import io.prestosql.spi.connector.ConnectorInsertTableHandle;
@@ -34,15 +36,20 @@ import io.prestosql.spi.connector.LimitApplicationResult;
 import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.spi.connector.SchemaTablePrefix;
 import io.prestosql.spi.connector.TableNotFoundException;
+import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.statistics.ComputedStatistics;
 import io.prestosql.spi.statistics.TableStatistics;
+import io.prestosql.sql.tree.Expression;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalLong;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -100,7 +107,8 @@ public class JdbcMetadata
                 handle.getSchemaName(),
                 handle.getTableName(),
                 newDomain,
-                handle.getLimit());
+                handle.getLimit(),
+                handle.getAggregations());
 
         return Optional.of(new ConstraintApplicationResult<>(handle, constraint.getSummary()));
     }
@@ -124,9 +132,37 @@ public class JdbcMetadata
                 handle.getSchemaName(),
                 handle.getTableName(),
                 handle.getConstraint(),
-                OptionalLong.of(limit));
+                OptionalLong.of(limit),
+                handle.getAggregations());
 
         return Optional.of(new LimitApplicationResult<>(handle, jdbcClient.isLimitGuaranteed()));
+    }
+
+    @Override
+    public Optional<AggregationApplicationResult<ConnectorTableHandle>> applyAggregation(ConnectorSession session, ConnectorTableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, Map<Symbol, ColumnHandle> aggregationMap)
+    {
+        JdbcTableHandle handle = (JdbcTableHandle) table;
+
+        if (!jdbcClient.supportsAggregation() || isPartial || aggregationMap.isEmpty() || handle.getAggregations().isPresent()) {
+            return Optional.empty();
+        }
+
+        handle = new JdbcTableHandle(
+            handle.getSchemaTableName(),
+            handle.getCatalogName(),
+            handle.getSchemaName(),
+            handle.getTableName(),
+            handle.getConstraint(),
+            handle.getLimit(),
+            Optional.empty());
+
+        Map<Symbol, ColumnHandle> newAssignments = new HashMap<>();
+        for (Symbol aggFun : aggregationMap.keySet()) {
+            JdbcColumnHandle jdbcColumnHandle = (JdbcColumnHandle) aggregationMap.get(aggFun);
+            newAssignments.put(aggFun, JdbcColumnHandle.builderFrom(jdbcColumnHandle).setSymbol(Optional.of(aggFun)).build());
+        }
+
+        return Optional.of(new AggregationApplicationResult<>(handle, newAssignments));
     }
 
     @Override

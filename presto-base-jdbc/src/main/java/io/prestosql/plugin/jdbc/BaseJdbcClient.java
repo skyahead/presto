@@ -885,6 +885,12 @@ public class BaseJdbcClient
         return limitFunction().isPresent();
     }
 
+    @Override
+    public boolean supportsAggregation()
+    {
+        return true;
+    }
+
     protected Optional<BiFunction<String, Long, String>> limitFunction()
     {
         return Optional.empty();

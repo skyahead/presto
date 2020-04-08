@@ -148,6 +148,12 @@ public class CachingJdbcClient
     }
 
     @Override
+    public boolean supportsAggregation()
+    {
+        return delegate.supportsAggregation();
+    }
+
+    @Override
     public boolean isLimitGuaranteed()
     {
         return delegate.isLimitGuaranteed();
