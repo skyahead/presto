@@ -138,6 +138,7 @@
         <module>presto-iceberg</module>
         <module>presto-google-sheets</module>
         <module>presto-bigquery</module>
+        <module>presto-druid</module>
     </modules>
 
     <dependencyManagement>
