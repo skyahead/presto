@@ -36,7 +36,6 @@ import io.prestosql.spi.connector.LimitApplicationResult;
 import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.spi.connector.SchemaTablePrefix;
 import io.prestosql.spi.connector.TableNotFoundException;
-import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
 import io.prestosql.spi.predicate.TupleDomain;
@@ -44,6 +43,7 @@ import io.prestosql.spi.statistics.ComputedStatistics;
 import io.prestosql.spi.statistics.TableStatistics;
 import io.prestosql.sql.tree.Expression;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -113,7 +113,7 @@ public class JdbcMetadata
                 handle.getAggregations(),
                 handle.getGroupingSets());
 
-        return Optional.of(new ConstraintApplicationResult<>(handle, constraint.getSummary()));
+        return Optional.of(new ConstraintApplicationResult<>(handle, TupleDomain.all()));
     }
 
     @Override

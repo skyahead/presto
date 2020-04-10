@@ -118,71 +118,7 @@ public class DruidQueryBuilder extends QueryBuilder
         this.quote = quote;
     }
 
-//    private static String formatAggregation(Aggregation aggregation)
-//    {
-//        StringBuilder builder = new StringBuilder();
-//
-//        String arguments = Joiner.on(", ").join(aggregation.getArguments());
-//        if (aggregation.getArguments().isEmpty() && "count".equalsIgnoreCase(aggregation.getResolvedFunction().getSignature().getName())) {
-//            arguments = "*";
-//        }
-//        if (aggregation.isDistinct()) {
-//            arguments = "DISTINCT " + arguments;
-//        }
-//
-//        builder.append(aggregation.getResolvedFunction().getSignature().getName())
-//            .append('(').append(arguments);
-//
-//        aggregation.getOrderingScheme().ifPresent(orderingScheme -> builder.append(' ').append(orderingScheme.getOrderBy().stream()
-//            .map(input -> input + " " + orderingScheme.getOrdering(input))
-//            .collect(joining(", "))));
-//
-//        builder.append(')');
-//
-//        aggregation.getFilter().ifPresent(expression -> builder.append(" FILTER (WHERE ").append(expression).append(")"));
-//
-//        aggregation.getMask().ifPresent(symbol -> builder.append(" (mask = ").append(symbol).append(")"));
-//
-//        return builder.toString();
-//    }
-
-
-//    private boolean isAggregationValid(JdbcTableHandle table, Set<JdbcColumnHandle> columns)
-//    {
-//        if (table.getAggregations().isPresent()) {
-//            Set<String> groupByColumns = new HashSet<>();
-//            Set<Symbol> aggregationColumns = new HashSet<>();
-//            for (JdbcColumnHandle column : columns) {
-//                if (column.getSymbol().isPresent()) {
-//                    aggregationColumns.add(column.getSymbol().get());
-//                } else {
-//                    groupByColumns.add(column.getColumnName());
-//                }
-//            }
-//
-//            Optional<GroupingSetDescriptor> groupingKeys = table.getGroupingSets();
-//            Optional<Map<Symbol, Aggregation>> aggregations = table.getAggregations();
-//
-//            if (groupingKeys.isPresent()) {
-//                Set<Symbol> keys = new HashSet<>(groupingKeys.get().getGroupingKeys());
-//                for (Symbol key : keys) {
-//                    if (!groupByColumns.contains(key.getName())) {
-//                        return false;
-//                    }
-//                }
-//            }
-//
-//            for (Symbol key : aggregations.get().keySet()) {
-//                if (!aggregationColumns.contains(key)) {
-//                    return false;
-//                }
-//            }
-//        }
-//
-//        return true;
-//    }
-
-    public PreparedStatement buildSql(
+    PreparedStatement buildSql(
             JdbcClient client,
             ConnectorSession session,
             Connection connection,
@@ -258,7 +194,7 @@ public class DruidQueryBuilder extends QueryBuilder
 
         // where
         List<TypeAndValue> accumulator = new ArrayList<>();
-        List<String> clauses = toConjuncts(client, session, columns, tupleDomain, accumulator, connection);
+        List<String> clauses = toConjuncts(client, session, tupleDomain, accumulator, connection);
         if (additionalPredicate.isPresent()) {
             clauses = ImmutableList.<String>builder()
                     .addAll(clauses)
@@ -358,14 +294,17 @@ public class DruidQueryBuilder extends QueryBuilder
                 .getPushdownConverter().apply(domain);
     }
 
-    private List<String> toConjuncts(JdbcClient client, ConnectorSession session, List<JdbcColumnHandle> columns, TupleDomain<ColumnHandle> tupleDomain, List<TypeAndValue> accumulator, Connection connection)
+    private List<String> toConjuncts(JdbcClient client, ConnectorSession session, TupleDomain<ColumnHandle> tupleDomain, List<TypeAndValue> accumulator, Connection connection)
     {
         ImmutableList.Builder<String> builder = ImmutableList.builder();
-        for (JdbcColumnHandle column : columns) {
-            Domain domain = tupleDomain.getDomains().get().get(column);
-            if (domain != null) {
-                domain = pushDownDomain(client, session, column, domain, connection);
-                builder.add(toPredicate(column.getColumnName(), domain, column, accumulator));
+        if (tupleDomain.getDomains().isPresent()) {
+            Map<ColumnHandle, Domain> domains = tupleDomain.getDomains().get();
+            for (ColumnHandle column : domains.keySet()) {
+                JdbcColumnHandle jdbcColumnHandle = (JdbcColumnHandle) column;
+
+                Domain domain = domains.get(jdbcColumnHandle);
+                domain = pushDownDomain(client, session, jdbcColumnHandle, domain, connection);
+                builder.add(toPredicate(jdbcColumnHandle.getColumnName(), domain, jdbcColumnHandle, accumulator));
             }
         }
         return builder.build();
