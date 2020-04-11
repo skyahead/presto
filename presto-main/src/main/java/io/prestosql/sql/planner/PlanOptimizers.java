@@ -164,7 +164,13 @@ public class PlanOptimizers
                 estimatedExchangesCostCalculator,
                 projectionPushdownRules);
 
-        IterativeOptimizer simplifyOptimizer = new IterativeOptimizer(
+        IterativeOptimizer limitPushIntoTableScan = new IterativeOptimizer(
+            ruleStats,
+            statsCalculator,
+            estimatedExchangesCostCalculator,
+            ImmutableSet.<Rule<?>>builder().add(new PushLimitIntoTableScan(metadata)).build());
+
+            IterativeOptimizer simplifyOptimizer = new IterativeOptimizer(
                 ruleStats,
                 statsCalculator,
                 estimatedExchangesCostCalculator,
@@ -309,7 +315,6 @@ public class PlanOptimizers
                         estimatedExchangesCostCalculator,
                         ImmutableSet.<Rule<?>>builder()
                                 .addAll(projectionPushdownRules)
-                                .add(new PushLimitIntoTableScan(metadata))
                                 .add(new PushAggregationIntoTableScan(metadata))
                                 .add(new PushPredicateIntoTableScan(metadata, typeAnalyzer))
                                 .add(new PushSampleIntoTableScan(metadata))
@@ -342,6 +347,7 @@ public class PlanOptimizers
                         estimatedExchangesCostCalculator,
                         ImmutableSet.of(new SimplifyCountOverConstant(metadata))),
                 new LimitPushDown(), // Run LimitPushDown before WindowFilterPushDown
+                limitPushIntoTableScan,
                 new WindowFilterPushDown(metadata), // This must run after PredicatePushDown and LimitPushDown so that it squashes any successive filter nodes and limits
                 new IterativeOptimizer(
                         ruleStats,
