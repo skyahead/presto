@@ -36,8 +36,10 @@ import io.prestosql.spi.connector.LimitApplicationResult;
 import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.spi.connector.SchemaTablePrefix;
 import io.prestosql.spi.connector.TableNotFoundException;
+import io.prestosql.spi.connector.TopNApplicationResult;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.statistics.ComputedStatistics;
 import io.prestosql.spi.statistics.TableStatistics;
@@ -111,7 +113,8 @@ public class JdbcMetadata
                 newDomain,
                 handle.getLimit(),
                 handle.getAggregations(),
-                handle.getGroupingSets());
+                handle.getGroupingSets(),
+                Optional.empty());
 
         return Optional.of(new ConstraintApplicationResult<>(handle, TupleDomain.all()));
     }
@@ -130,16 +133,44 @@ public class JdbcMetadata
         }
 
         handle = new JdbcTableHandle(
-                handle.getSchemaTableName(),
-                handle.getCatalogName(),
-                handle.getSchemaName(),
-                handle.getTableName(),
-                handle.getConstraint(),
-                OptionalLong.of(limit),
-                handle.getAggregations(),
-                handle.getGroupingSets());
+            handle.getSchemaTableName(),
+            handle.getCatalogName(),
+            handle.getSchemaName(),
+            handle.getTableName(),
+            handle.getConstraint(),
+            OptionalLong.of(limit),
+            handle.getAggregations(),
+            handle.getGroupingSets(),
+            Optional.empty());
 
         return Optional.of(new LimitApplicationResult<>(handle, jdbcClient.isLimitGuaranteed()));
+    }
+
+    @Override
+    public Optional<TopNApplicationResult<ConnectorTableHandle>> applyTopN(ConnectorSession session, ConnectorTableHandle table, long limit, OrderingScheme orderingScheme)
+    {
+        JdbcTableHandle handle = (JdbcTableHandle) table;
+
+        if (!jdbcClient.supportsLimit()) {
+            return Optional.empty();
+        }
+
+        if (handle.getLimit().isPresent() && handle.getLimit().getAsLong() <= limit) {
+            return Optional.empty();
+        }
+
+        handle = new JdbcTableHandle(
+            handle.getSchemaTableName(),
+            handle.getCatalogName(),
+            handle.getSchemaName(),
+            handle.getTableName(),
+            handle.getConstraint(),
+            OptionalLong.of(limit),
+            handle.getAggregations(),
+            handle.getGroupingSets(),
+            Optional.of(orderingScheme));
+
+        return Optional.of(new TopNApplicationResult<>(handle, limit, orderingScheme));
     }
 
     @Override
@@ -159,7 +190,8 @@ public class JdbcMetadata
             handle.getConstraint(),
             handle.getLimit(),
             Optional.of(aggregations),
-            Optional.of(groupingSets));
+            Optional.of(groupingSets),
+            Optional.empty());
 
         Map<Symbol, ColumnHandle> newAssignments = new HashMap<>();
         for (Symbol aggFun : aggColumnHandleMap.keySet()) {

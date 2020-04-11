@@ -23,6 +23,7 @@ import io.prestosql.spi.connector.SchemaTableName;
 import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 
 import javax.annotation.Nullable;
@@ -47,10 +48,11 @@ public final class JdbcTableHandle
     private final OptionalLong limit;
     private final Optional<Map<Symbol, Aggregation>> aggregations;
     private final Optional<GroupingSetDescriptor> groupingSets;
+    private final Optional<OrderingScheme> orderingScheme;
 
     public JdbcTableHandle(SchemaTableName schemaTableName, @Nullable String catalogName, @Nullable String schemaName, String tableName)
     {
-        this(schemaTableName, catalogName, schemaName, tableName, TupleDomain.all(), OptionalLong.empty(), Optional.empty(), Optional.empty());
+        this(schemaTableName, catalogName, schemaName, tableName, TupleDomain.all(), OptionalLong.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonCreator
@@ -62,7 +64,8 @@ public final class JdbcTableHandle
         @JsonProperty("constraint") TupleDomain<ColumnHandle> constraint,
         @JsonProperty("limit") OptionalLong limit,
         @JsonProperty("aggregations") Optional<Map<Symbol, Aggregation>> aggregations,
-        @JsonProperty("groupingSets") Optional<GroupingSetDescriptor> groupingSets)
+        @JsonProperty("groupingSets") Optional<GroupingSetDescriptor> groupingSets,
+        @JsonProperty("orderingScheme") Optional<OrderingScheme> orderingScheme)
     {
         this.schemaTableName = requireNonNull(schemaTableName, "schemaTableName is null");
         this.catalogName = catalogName;
@@ -72,6 +75,7 @@ public final class JdbcTableHandle
         this.limit = requireNonNull(limit, "limit is null");
         this.aggregations = aggregations;
         this.groupingSets = groupingSets;
+        this.orderingScheme = orderingScheme;
     }
 
     @JsonProperty
@@ -124,6 +128,12 @@ public final class JdbcTableHandle
         return groupingSets;
     }
 
+    @JsonProperty
+    public Optional<OrderingScheme> getOrderingScheme()
+    {
+        return orderingScheme;
+    }
+
     @Override
     public boolean equals(Object obj)
     {
@@ -156,6 +166,9 @@ public final class JdbcTableHandle
         });
         groupingSets.ifPresent(gs -> {
             builder.append(" groupingSets: ").append(gs.getGroupingKeys());
+        });
+        orderingScheme.ifPresent(os -> {
+            builder.append(" orderingScheme: ").append(os.getOrderingList());
         });
         return builder.toString();
     }

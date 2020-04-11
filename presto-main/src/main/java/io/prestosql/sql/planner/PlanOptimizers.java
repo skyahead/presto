@@ -170,6 +170,12 @@ public class PlanOptimizers
             estimatedExchangesCostCalculator,
             ImmutableSet.<Rule<?>>builder().add(new PushLimitIntoTableScan(metadata)).build());
 
+        IterativeOptimizer topNPushIntoTableScan = new IterativeOptimizer(
+            ruleStats,
+            statsCalculator,
+            estimatedExchangesCostCalculator,
+            ImmutableSet.<Rule<?>>builder().add(new PushTopNIntoTableScan(metadata)).build());
+
         IterativeOptimizer simplifyOptimizer = new IterativeOptimizer(
             ruleStats,
             statsCalculator,
@@ -408,6 +414,7 @@ public class PlanOptimizers
                         new PushTopNThroughProject(),
                         new PushTopNThroughOuterJoin(),
                         new PushTopNThroughUnion())));
+        builder.add(topNPushIntoTableScan);
         builder.add(new IterativeOptimizer(
                 ruleStats,
                 statsCalculator,
