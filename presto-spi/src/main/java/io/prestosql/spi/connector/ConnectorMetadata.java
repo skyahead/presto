@@ -19,6 +19,7 @@ import io.prestosql.spi.Symbol;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -712,6 +713,11 @@ public interface ConnectorMetadata
      * non-empty result with the "limit guaranteed" flag set to true.
      */
     default Optional<LimitApplicationResult<ConnectorTableHandle>> applyLimit(ConnectorSession session, ConnectorTableHandle handle, long limit)
+    {
+        return Optional.empty();
+    }
+
+    default Optional<TopNApplicationResult<ConnectorTableHandle>> applyTopN(ConnectorSession session, ConnectorTableHandle handle, long limit, OrderingScheme orderingScheme)
     {
         return Optional.empty();
     }

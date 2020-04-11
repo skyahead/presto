@@ -29,6 +29,7 @@ import io.prestosql.spi.function.OperatorType;
 import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -326,6 +327,8 @@ public interface Metadata
     boolean usesLegacyTableLayouts(Session session, TableHandle table);
 
     Optional<LimitApplicationResult<TableHandle>> applyLimit(Session session, TableHandle table, long limit);
+
+    Optional<TopNApplicationResult<TableHandle>> applyTopN(Session session, TableHandle table, long limit, OrderingScheme orderingScheme);
 
     Optional<ConstraintApplicationResult<TableHandle>> applyFilter(Session session, TableHandle table, Constraint constraint);
 

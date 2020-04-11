@@ -54,6 +54,7 @@ import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.plan.AggregationNode;
 import io.prestosql.spi.plan.AggregationNode.Aggregation;
 import io.prestosql.spi.plan.AggregationNode.GroupingSetDescriptor;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -1021,9 +1022,27 @@ public final class MetadataManager
 
         ConnectorSession connectorSession = session.toConnectorSession(catalogName);
         return metadata.applyLimit(connectorSession, table.getConnectorHandle(), limit)
-                .map(result -> new LimitApplicationResult<>(
-                        new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
-                        result.isLimitGuaranteed()));
+            .map(result -> new LimitApplicationResult<>(
+                new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
+                result.isLimitGuaranteed()));
+    }
+
+    @Override
+    public Optional<TopNApplicationResult<TableHandle>> applyTopN(Session session, TableHandle table, long limit, OrderingScheme orderingScheme)
+    {
+        CatalogName catalogName = table.getCatalogName();
+        ConnectorMetadata metadata = getMetadata(session, catalogName);
+
+        if (metadata.usesLegacyTableLayouts()) {
+            return Optional.empty();
+        }
+
+        ConnectorSession connectorSession = session.toConnectorSession(catalogName);
+        return metadata.applyTopN(connectorSession, table.getConnectorHandle(), limit, orderingScheme)
+            .map(result -> new TopNApplicationResult<>(
+                new TableHandle(catalogName, result.getHandle(), table.getTransaction(), Optional.empty()),
+                result.getLimit(),
+                result.getOrderingScheme()));
     }
 
     @Override
