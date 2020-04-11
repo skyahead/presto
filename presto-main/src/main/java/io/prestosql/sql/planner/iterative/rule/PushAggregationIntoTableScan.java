@@ -57,7 +57,6 @@ public class PushAggregationIntoTableScan
     {
         TableScanNode tableScan = captures.get(TABLE_SCAN);
 
-        // TODO: to confirm, do we not support partial aggregation?
         if (aggregationNode.getStep().isOutputPartial()) {
             return Result.empty();
         }

@@ -170,17 +170,17 @@ public class PlanOptimizers
             estimatedExchangesCostCalculator,
             ImmutableSet.<Rule<?>>builder().add(new PushLimitIntoTableScan(metadata)).build());
 
-            IterativeOptimizer simplifyOptimizer = new IterativeOptimizer(
-                ruleStats,
-                statsCalculator,
-                estimatedExchangesCostCalculator,
-                ImmutableSet.<Rule<?>>builder()
-                        .addAll(new SimplifyExpressions(metadata, typeAnalyzer).rules())
-                        .addAll(new UnwrapCastInComparison(metadata, typeAnalyzer).rules())
-                        .addAll(new RemoveDuplicateConditions(metadata).rules())
-                        .addAll(new CanonicalizeExpressions(metadata, typeAnalyzer).rules())
-                        .add(new RemoveTrivialFilters())
-                        .build());
+        IterativeOptimizer simplifyOptimizer = new IterativeOptimizer(
+            ruleStats,
+            statsCalculator,
+            estimatedExchangesCostCalculator,
+            ImmutableSet.<Rule<?>>builder()
+                    .addAll(new SimplifyExpressions(metadata, typeAnalyzer).rules())
+                    .addAll(new UnwrapCastInComparison(metadata, typeAnalyzer).rules())
+                    .addAll(new RemoveDuplicateConditions(metadata).rules())
+                    .addAll(new CanonicalizeExpressions(metadata, typeAnalyzer).rules())
+                    .add(new RemoveTrivialFilters())
+                    .build());
 
         builder.add(
                 // Clean up all the sugar in expressions, e.g. AtTimeZone, must be run before all the other optimizers
