@@ -27,7 +27,9 @@ import io.prestosql.sql.tree.Identifier;
 import io.prestosql.sql.tree.SymbolReference;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Locale.ENGLISH;
@@ -57,6 +59,16 @@ public class SymbolAllocator
     public Symbol newSymbol(String nameHint, Type type)
     {
         return newSymbol(nameHint, type, null);
+    }
+
+    public Symbol updateOrNewSymbol(String nameHint, Type type)
+    {
+        Map<String, Symbol> names = new HashMap<>();
+        symbols.keySet().forEach(symbol -> names.put(symbol.getName(), symbol));
+
+        Symbol symbol = names.containsKey(nameHint) ? names.get(nameHint) : newSymbol(nameHint, type);
+        symbols.put(symbol, type);
+        return symbol;
     }
 
     public Symbol newHashSymbol()

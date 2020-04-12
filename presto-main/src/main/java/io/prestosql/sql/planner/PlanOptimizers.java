@@ -26,7 +26,112 @@ import io.prestosql.split.PageSourceManager;
 import io.prestosql.split.SplitManager;
 import io.prestosql.sql.planner.iterative.IterativeOptimizer;
 import io.prestosql.sql.planner.iterative.Rule;
-import io.prestosql.sql.planner.iterative.rule.*;
+import io.prestosql.sql.planner.iterative.rule.AddExchangesBelowPartialAggregationOverGroupIdRuleSet;
+import io.prestosql.sql.planner.iterative.rule.AddIntermediateAggregations;
+import io.prestosql.sql.planner.iterative.rule.CanonicalizeExpressions;
+import io.prestosql.sql.planner.iterative.rule.CreatePartialTopN;
+import io.prestosql.sql.planner.iterative.rule.DesugarArrayConstructor;
+import io.prestosql.sql.planner.iterative.rule.DesugarAtTimeZone;
+import io.prestosql.sql.planner.iterative.rule.DesugarCurrentPath;
+import io.prestosql.sql.planner.iterative.rule.DesugarCurrentUser;
+import io.prestosql.sql.planner.iterative.rule.DesugarLambdaExpression;
+import io.prestosql.sql.planner.iterative.rule.DesugarLike;
+import io.prestosql.sql.planner.iterative.rule.DesugarRowSubscript;
+import io.prestosql.sql.planner.iterative.rule.DesugarTryExpression;
+import io.prestosql.sql.planner.iterative.rule.DetermineJoinDistributionType;
+import io.prestosql.sql.planner.iterative.rule.DetermineSemiJoinDistributionType;
+import io.prestosql.sql.planner.iterative.rule.EliminateCrossJoins;
+import io.prestosql.sql.planner.iterative.rule.EvaluateZeroSample;
+import io.prestosql.sql.planner.iterative.rule.ExtractSpatialJoins;
+import io.prestosql.sql.planner.iterative.rule.GatherAndMergeWindows;
+import io.prestosql.sql.planner.iterative.rule.ImplementBernoulliSampleAsFilter;
+import io.prestosql.sql.planner.iterative.rule.ImplementExceptAsUnion;
+import io.prestosql.sql.planner.iterative.rule.ImplementFilteredAggregations;
+import io.prestosql.sql.planner.iterative.rule.ImplementIntersectAsUnion;
+import io.prestosql.sql.planner.iterative.rule.ImplementLimitWithTies;
+import io.prestosql.sql.planner.iterative.rule.ImplementOffset;
+import io.prestosql.sql.planner.iterative.rule.InlineProjections;
+import io.prestosql.sql.planner.iterative.rule.MergeFilters;
+import io.prestosql.sql.planner.iterative.rule.MergeLimitOverProjectWithSort;
+import io.prestosql.sql.planner.iterative.rule.MergeLimitWithDistinct;
+import io.prestosql.sql.planner.iterative.rule.MergeLimitWithSort;
+import io.prestosql.sql.planner.iterative.rule.MergeLimitWithTopN;
+import io.prestosql.sql.planner.iterative.rule.MergeLimits;
+import io.prestosql.sql.planner.iterative.rule.MultipleDistinctAggregationToMarkDistinct;
+import io.prestosql.sql.planner.iterative.rule.PruneAggregationColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneAggregationSourceColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneCountAggregationOverScalar;
+import io.prestosql.sql.planner.iterative.rule.PruneCrossJoinColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneFilterColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneIndexSourceColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneJoinChildrenColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneJoinColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneLimitColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneMarkDistinctColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneOffsetColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneOrderByInAggregation;
+import io.prestosql.sql.planner.iterative.rule.PruneOutputColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneProjectColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneSemiJoinColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneSemiJoinFilteringSourceColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneTableScanColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneTopNColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneValuesColumns;
+import io.prestosql.sql.planner.iterative.rule.PruneWindowColumns;
+import io.prestosql.sql.planner.iterative.rule.PushAggregationIntoTableScan;
+import io.prestosql.sql.planner.iterative.rule.PushAggregationThroughOuterJoin;
+import io.prestosql.sql.planner.iterative.rule.PushDeleteIntoConnector;
+import io.prestosql.sql.planner.iterative.rule.PushLimitIntoTableScan;
+import io.prestosql.sql.planner.iterative.rule.PushLimitThroughMarkDistinct;
+import io.prestosql.sql.planner.iterative.rule.PushLimitThroughOffset;
+import io.prestosql.sql.planner.iterative.rule.PushLimitThroughOuterJoin;
+import io.prestosql.sql.planner.iterative.rule.PushLimitThroughProject;
+import io.prestosql.sql.planner.iterative.rule.PushLimitThroughSemiJoin;
+import io.prestosql.sql.planner.iterative.rule.PushLimitThroughUnion;
+import io.prestosql.sql.planner.iterative.rule.PushOffsetThroughProject;
+import io.prestosql.sql.planner.iterative.rule.PushPartialAggregationThroughExchange;
+import io.prestosql.sql.planner.iterative.rule.PushPartialAggregationThroughJoin;
+import io.prestosql.sql.planner.iterative.rule.PushPredicateIntoTableScan;
+import io.prestosql.sql.planner.iterative.rule.PushProjectionIntoTableScan;
+import io.prestosql.sql.planner.iterative.rule.PushProjectionThroughExchange;
+import io.prestosql.sql.planner.iterative.rule.PushProjectionThroughUnion;
+import io.prestosql.sql.planner.iterative.rule.PushRemoteExchangeThroughAssignUniqueId;
+import io.prestosql.sql.planner.iterative.rule.PushSampleIntoTableScan;
+import io.prestosql.sql.planner.iterative.rule.PushTableWriteThroughUnion;
+import io.prestosql.sql.planner.iterative.rule.PushTopNIntoTableScan;
+import io.prestosql.sql.planner.iterative.rule.PushTopNThroughOuterJoin;
+import io.prestosql.sql.planner.iterative.rule.PushTopNThroughProject;
+import io.prestosql.sql.planner.iterative.rule.PushTopNThroughUnion;
+import io.prestosql.sql.planner.iterative.rule.RemoveAggregationInSemiJoin;
+import io.prestosql.sql.planner.iterative.rule.RemoveDuplicateConditions;
+import io.prestosql.sql.planner.iterative.rule.RemoveEmptyDelete;
+import io.prestosql.sql.planner.iterative.rule.RemoveFullSample;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantCrossJoin;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantDistinctLimit;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantIdentityProjections;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantJoin;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantLimit;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantSort;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantTableScanPredicate;
+import io.prestosql.sql.planner.iterative.rule.RemoveRedundantTopN;
+import io.prestosql.sql.planner.iterative.rule.RemoveTrivialFilters;
+import io.prestosql.sql.planner.iterative.rule.RemoveUnreferencedScalarApplyNodes;
+import io.prestosql.sql.planner.iterative.rule.RemoveUnreferencedScalarSubqueries;
+import io.prestosql.sql.planner.iterative.rule.RemoveUnsupportedDynamicFilters;
+import io.prestosql.sql.planner.iterative.rule.ReorderJoins;
+import io.prestosql.sql.planner.iterative.rule.RewriteSpatialPartitioningAggregation;
+import io.prestosql.sql.planner.iterative.rule.SimplifyCountOverConstant;
+import io.prestosql.sql.planner.iterative.rule.SimplifyExpressions;
+import io.prestosql.sql.planner.iterative.rule.SingleDistinctAggregationToGroupBy;
+import io.prestosql.sql.planner.iterative.rule.TransformCorrelatedInPredicateToJoin;
+import io.prestosql.sql.planner.iterative.rule.TransformCorrelatedJoinToJoin;
+import io.prestosql.sql.planner.iterative.rule.TransformCorrelatedScalarAggregationToJoin;
+import io.prestosql.sql.planner.iterative.rule.TransformCorrelatedScalarSubquery;
+import io.prestosql.sql.planner.iterative.rule.TransformCorrelatedSingleRowSubqueryToProject;
+import io.prestosql.sql.planner.iterative.rule.TransformExistsApplyToCorrelatedJoin;
+import io.prestosql.sql.planner.iterative.rule.TransformUncorrelatedInPredicateSubqueryToSemiJoin;
+import io.prestosql.sql.planner.iterative.rule.TransformUncorrelatedSubqueryToJoin;
+import io.prestosql.sql.planner.iterative.rule.UnwrapCastInComparison;
 import io.prestosql.sql.planner.optimizations.AddExchanges;
 import io.prestosql.sql.planner.optimizations.AddLocalExchanges;
 import io.prestosql.sql.planner.optimizations.BeginTableWrite;
@@ -146,7 +251,6 @@ public class PlanOptimizers
                 new PruneTableScanColumns());
 
         Set<Rule<?>> projectionPushdownRules = ImmutableSet.of(
-                new PushProjectionIntoTableScan(metadata, typeAnalyzer),
                 new PushProjectionThroughUnion(),
                 new PushProjectionThroughExchange());
 
@@ -175,6 +279,18 @@ public class PlanOptimizers
             statsCalculator,
             estimatedExchangesCostCalculator,
             ImmutableSet.<Rule<?>>builder().add(new PushTopNIntoTableScan(metadata)).build());
+
+        IterativeOptimizer aggregationPushIntoTableScan = new IterativeOptimizer(
+            ruleStats,
+            statsCalculator,
+            estimatedExchangesCostCalculator,
+            ImmutableSet.<Rule<?>>builder().add(new PushAggregationIntoTableScan(metadata)).build());
+
+        IterativeOptimizer projectionPushIntoTableScan = new IterativeOptimizer(
+            ruleStats,
+            statsCalculator,
+            estimatedExchangesCostCalculator,
+            ImmutableSet.<Rule<?>>builder().add(new PushProjectionIntoTableScan(metadata, typeAnalyzer)).build());
 
         IterativeOptimizer simplifyOptimizer = new IterativeOptimizer(
             ruleStats,
@@ -312,6 +428,7 @@ public class PlanOptimizers
                                 new TransformCorrelatedSingleRowSubqueryToProject(),
                                 new RemoveAggregationInSemiJoin())),
                 new CheckSubqueryNodesAreRewritten(),
+                projectionPushIntoTableScan,
                 new StatsRecordingPlanOptimizer(
                         optimizerStats,
                         new PredicatePushDown(metadata, typeAnalyzer, false, false)),
@@ -414,7 +531,9 @@ public class PlanOptimizers
                         new PushTopNThroughProject(),
                         new PushTopNThroughOuterJoin(),
                         new PushTopNThroughUnion())));
+        builder.add(aggregationPushIntoTableScan);
         builder.add(topNPushIntoTableScan);
+        builder.add(limitPushIntoTableScan);
         builder.add(new IterativeOptimizer(
                 ruleStats,
                 statsCalculator,

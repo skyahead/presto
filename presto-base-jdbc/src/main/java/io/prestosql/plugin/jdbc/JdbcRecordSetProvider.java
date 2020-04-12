@@ -50,8 +50,8 @@ public class JdbcRecordSetProvider
         // any columns that were recorded in the table handle match the requested set.
         // If no columns are recorded, it means that applyProjection never got called (e.g., in the case all columns are being used) and all
         // table columns should be returned. TODO: this is something that should be addressed once the getRecordSet API is revamped
-        jdbcTable.getColumns()
-                .ifPresent(tableColumns -> verify(columns.equals(tableColumns)));
+//        jdbcTable.getColumns()
+//                .ifPresent(tableColumns -> verify(columns.equals(tableColumns)));
 
         ImmutableList.Builder<JdbcColumnHandle> handles = ImmutableList.builder();
         for (ColumnHandle handle : columns) {

@@ -40,12 +40,13 @@ import io.prestosql.spi.connector.ProjectionApplicationResult;
 import io.prestosql.spi.connector.AggregationApplicationResult;
 import io.prestosql.spi.connector.SampleType;
 import io.prestosql.spi.connector.SystemTable;
+import io.prestosql.spi.connector.TopNApplicationResult;
 import io.prestosql.spi.expression.ConnectorExpression;
 import io.prestosql.spi.function.OperatorType;
 import io.prestosql.spi.metadata.ResolvedFunction;
 import io.prestosql.spi.metadata.Signature;
 import io.prestosql.spi.plan.AggregationNode;
-import io.prestosql.spi.plan.AggregationNode.Aggregation;
+import io.prestosql.spi.plan.OrderingScheme;
 import io.prestosql.spi.predicate.TupleDomain;
 import io.prestosql.spi.security.GrantInfo;
 import io.prestosql.spi.security.PrestoPrincipal;
@@ -431,8 +432,12 @@ public abstract class AbstractMockMetadata
     }
 
     @Override
-    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, AggregationNode aggregationNode)
-    {
+    public Optional<AggregationApplicationResult<TableHandle>> applyAggregation(Session session, TableHandle table, boolean isPartial, Map<Symbol, ColumnHandle> assignments, AggregationNode aggregationNode) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<TopNApplicationResult<TableHandle>> applyTopN(Session session, TableHandle table, long limit, OrderingScheme orderingScheme) {
         return Optional.empty();
     }
 

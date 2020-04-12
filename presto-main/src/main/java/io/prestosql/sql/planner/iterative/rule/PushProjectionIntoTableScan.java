@@ -120,7 +120,7 @@ public class PushProjectionIntoTableScan
         Map<Symbol, ColumnHandle> newScanAssignments = new HashMap<>();
         Map<String, Symbol> variableMappings = new HashMap<>();
         for (ProjectionApplicationResult.Assignment assignment : result.get().getAssignments()) {
-            Symbol symbol = context.getSymbolAllocator().newSymbol(assignment.getVariable(), assignment.getType());
+            Symbol symbol = context.getSymbolAllocator().updateOrNewSymbol(assignment.getVariable(), assignment.getType());
 
             newScanOutputs.add(symbol);
             newScanAssignments.put(symbol, assignment.getColumn());
@@ -146,13 +146,10 @@ public class PushProjectionIntoTableScan
         });
 
         return Result.ofPlanNode(
-                new ProjectNode(
-                        context.getIdAllocator().getNextId(),
                         TableScanNode.newInstance(
                                 tableScan.getId(),
                                 result.get().getHandle(),
                                 newScanOutputs,
-                                newScanAssignments),
-                        newProjectionAssignments.build()));
+                                newScanAssignments));
     }
 }
