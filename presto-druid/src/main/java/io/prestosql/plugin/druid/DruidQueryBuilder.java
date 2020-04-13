@@ -135,8 +135,8 @@ public class DruidQueryBuilder extends QueryBuilder
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ");
 
-        Set<String> aggColumnNames = new HashSet<>();
-        Set<String> groupByColumnNames = new HashSet<>();
+        List<String> aggColumnNames = new ArrayList<>();
+        List<String> groupByColumnNames = new ArrayList<>();
         for (JdbcColumnHandle jdbcColumnHandle : columns) {
             if (jdbcColumnHandle.getSymbol().isPresent()) {
                 aggColumnNames.add(jdbcColumnHandle.getColumnName());
